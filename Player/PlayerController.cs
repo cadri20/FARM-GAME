@@ -18,7 +18,7 @@ public partial class PlayerController : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		ValidateInput();
-		_animationTree.Set("parameters/Walking/blend_position", _moveDirection);
+		AnimatePlayer();
 		MoveAndSlide();
     }
 
@@ -26,6 +26,23 @@ public partial class PlayerController : CharacterBody2D
 	{
 		_moveDirection = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 		Velocity = _moveDirection * Speed;
+    }
+
+	private void AnimatePlayer()
+	{
+		if (Velocity.Length() == 0) 
+		{ 
+			_animationTree.Set("parameters/conditions/Idle", true);
+			_animationTree.Set("parameters/conditions/Walk", false);
+		}
+		else
+		{
+            _animationTree.Set("parameters/Walking/blend_position", _moveDirection);
+            _animationTree.Set("parameters/Idle/blend_position", _moveDirection);
+
+            _animationTree.Set("parameters/conditions/Idle", false);
+            _animationTree.Set("parameters/conditions/Walk", true);
+        }
     }
 
 }

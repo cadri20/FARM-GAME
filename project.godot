@@ -11,9 +11,15 @@ config_version=5
 [application]
 
 config/name="FarmGame"
-run/main_scene="res://Player/player.tscn"
+run/main_scene="uid://4kjj8gh3oya3"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=426
+window/size/viewport_height=240
+window/stretch/mode="viewport"
 
 [dotnet]
 
