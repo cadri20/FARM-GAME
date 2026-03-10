@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://bhvm31idb8tio"]
+
+[ext_resource type="Texture2D" uid="uid://bsun4dl5drpt6" path="res://Tools/PlayerTool_0.png" id="1_isk47"]
+
+[sub_resource type="Animation" id="Animation_e44df"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_r3dgn"]
+resource_name = "Tool_Down"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_l0tf7"]
+resource_name = "Tool_Left"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19999999, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_isk47"]
+resource_name = "Tool_Right"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_pclxh"]
+resource_name = "Tool_Up"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.23333332),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 5, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pclxh"]
+_data = {
+&"RESET": SubResource("Animation_e44df"),
+&"Tool_Down": SubResource("Animation_r3dgn"),
+&"Tool_Left": SubResource("Animation_l0tf7"),
+&"Tool_Right": SubResource("Animation_isk47"),
+&"Tool_Up": SubResource("Animation_pclxh")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i3ixo"]
+animation = &"Tool_Up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7x1n3"]
+animation = &"Tool_Down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6sno6"]
+animation = &"Tool_Left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pbhal"]
+animation = &"Tool_Right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_g66rb"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_i3ixo")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_7x1n3")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_6sno6")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_pbhal")
+blend_point_3/pos = Vector2(1, 0)
+snap = Vector2(1, 1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_18gpc"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7agqw"]
+states/Start/position = Vector2(203, 100)
+states/Tool/node = SubResource("AnimationNodeBlendSpace2D_g66rb")
+states/Tool/position = Vector2(390, 100)
+transitions = ["Start", "Tool", SubResource("AnimationNodeStateMachineTransition_18gpc")]
+
+[node name="FarmTool" type="Node2D" unique_id=615976693]
+top_level = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1049478474]
+texture = ExtResource("1_isk47")
+hframes = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1776297097]
+libraries/ = SubResource("AnimationLibrary_pclxh")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1764345928]
+active = false
+tree_root = SubResource("AnimationNodeStateMachine_7agqw")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Tool/blend_position = Vector2(0, 0)
