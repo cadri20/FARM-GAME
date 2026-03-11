@@ -25,6 +25,12 @@ window/stretch/mode="viewport"
 
 project/assembly_name="FarmGame"
 
+[layer_names]
+
+2d_physics/layer_1="Muro"
+2d_physics/layer_3="Interactuable"
+2d_physics/layer_4="Cultivable"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

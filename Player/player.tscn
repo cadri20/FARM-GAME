@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bqxxofqurttl7" path="res://Player/PlayerController.cs" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://3akdqmclh758" path="res://Player/PlayerSpriteSheet.png" id="2_btcbx"]
 [ext_resource type="PackedScene" uid="uid://bhvm31idb8tio" path="res://Tools/farm_tool.tscn" id="3_btcbx"]
+[ext_resource type="Texture2D" uid="uid://fmmg7yphued1" path="res://Crops/InteractNotification.png" id="4_gwnis"]
 
 [sub_resource type="Animation" id="Animation_gwnis"]
 resource_name = "Idle_Down"
@@ -347,6 +348,12 @@ states/Walking/node = SubResource("AnimationNodeBlendSpace2D_b1ygp")
 states/Walking/position = Vector2(622, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_dkpta"), "Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_o28un"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_n471f"), "Idle", "UsingTool", SubResource("AnimationNodeStateMachineTransition_gpjlu"), "UsingTool", "Idle", SubResource("AnimationNodeStateMachineTransition_8mwp6"), "UsingTool", "Walking", SubResource("AnimationNodeStateMachineTransition_qemgg"), "Walking", "UsingTool", SubResource("AnimationNodeStateMachineTransition_8viyr")]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_btcbx"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k53q1"]
+size = Vector2(20, 13)
+
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=673575696]
 script = ExtResource("1_4ntmi")
 Speed = 100
@@ -373,3 +380,27 @@ parameters/Walking/blend_position = Vector2(0, 0)
 
 [node name="FarmTool" parent="." unique_id=615976693 instance=ExtResource("3_btcbx")]
 visible = false
+
+[node name="ViewDirection" type="Marker2D" parent="." unique_id=544584316]
+position = Vector2(0, 8)
+
+[node name="Area2D" type="Area2D" parent="ViewDirection" unique_id=448349350]
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ViewDirection/Area2D" unique_id=2036080693]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_btcbx")
+disabled = true
+
+[node name="Actionables" type="Area2D" parent="." unique_id=487788816]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionables" unique_id=1519286908]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_k53q1")
+
+[node name="Notify" type="Sprite2D" parent="." unique_id=2133013470]
+visible = false
+position = Vector2(0, -16)
+texture = ExtResource("4_gwnis")

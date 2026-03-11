@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dq56iaw5iasoj"]
+
+[ext_resource type="Script" uid="uid://do25gbyadem3f" path="res://Crops/DefineDirtHole.cs" id="1_ten4l"]
+[ext_resource type="Texture2D" uid="uid://b5r457byb8ti" path="res://Crops/Hole.png" id="2_r5liy"]
+[ext_resource type="Script" uid="uid://bikd78kobncyl" path="res://Crops/Interactuable.cs" id="3_a0eae"]
+[ext_resource type="Texture2D" uid="uid://cly225dwqlpw7" path="res://Crops/FarmCrops_v2.png" id="4_7r2di"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_btjte"]
+size = Vector2(18, 18)
+
+[node name="Hole" type="Node2D" unique_id=503307472]
+script = ExtResource("1_ten4l")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=990289365]
+texture = ExtResource("2_r5liy")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1434030459]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("3_a0eae")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=914511940]
+shape = SubResource("RectangleShape2D_btjte")
+
+[node name="Crops" type="Sprite2D" parent="." unique_id=1529975084]
+position = Vector2(0, -7)
+texture = ExtResource("4_7r2di")
+hframes = 4
+vframes = 7
+frame = 3
