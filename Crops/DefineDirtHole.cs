@@ -13,14 +13,17 @@ public partial class DefineDirtHole : Node2D
     private int _randomCrop = 0;
     private RandomNumberGenerator rng = new RandomNumberGenerator();
     private Sprite2D _crops;
+    private MainRoomController _mainGame;
     // Called when the node enters the scene tree for the first time.
     public override async void _Ready()
 	{
         _crops = GetNode<Sprite2D>("Crops");
+        _mainGame = GetNode<MainRoomController>("/root/Main");
+        _mainGame.Connect("DayChanged", new Callable(this, nameof(GrowCrop)));
+
         _randomCrop = rng.RandiRange(0, _crops.Vframes - 1);
         _crops.Visible = true;
         _crops.FrameCoords = new Vector2I(_growCropId, _randomCrop);
-        await GrowCrop();
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,14 +31,12 @@ public partial class DefineDirtHole : Node2D
 	{
 	}
 
-    private async Task GrowCrop()
+    private void GrowCrop()
     {
         if (_growCropId < _crops.Hframes - 1)
         {
-            await ToSignal(GetTree().CreateTimer(GrowSpeed), "timeout");
             _growCropId++;
             _crops.FrameCoords = new Vector2I(_growCropId, _randomCrop);
-            await GrowCrop();
         }
         else
             FlagReady = true;

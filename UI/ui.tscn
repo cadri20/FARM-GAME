@@ -28,6 +28,7 @@ offset_top = 5.0
 offset_right = 415.0
 offset_bottom = 24.0
 theme_override_font_sizes/normal_font_size = 11
+bbcode_enabled = true
 text = "00:00"
 scroll_active = false
 
@@ -38,6 +39,7 @@ offset_top = 18.0
 offset_right = 433.0
 offset_bottom = 40.0
 theme_override_font_sizes/normal_font_size = 9
+bbcode_enabled = true
 text = "00"
 scroll_active = false
 
@@ -48,6 +50,7 @@ offset_top = 18.0
 offset_right = 381.0
 offset_bottom = 30.0
 theme_override_font_sizes/normal_font_size = 9
+bbcode_enabled = true
 text = "00"
 scroll_active = false
 

@@ -1,14 +1,23 @@
 [gd_scene format=3 uid="uid://4kjj8gh3oya3"]
 
 [ext_resource type="PackedScene" uid="uid://bb5vl0j6ob2jx" path="res://UI/ui.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://16adk3m2luec" path="res://MainRoomController.cs" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://3rkjjkwinotm" path="res://Player/player.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://d14vf1dyxrxmg" path="res://Tiles/main_map.tscn" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://brhd6hct05mkj" path="res://UI/UiController.cs" id="3_lquwl"]
 
 [node name="Main" type="Node2D" unique_id=1165674612]
+script = ExtResource("1_1bvp3")
 
 [node name="UI" parent="." unique_id=139274513 instance=ExtResource("1_0xm2m")]
+script = ExtResource("3_lquwl")
+SpeedMultiplier = 3000.0
 
-[node name="TileMap" parent="." unique_id=510392709 instance=ExtResource("3_h2yge")]
+[node name="NightModulate" type="CanvasModulate" parent="." unique_id=535091779]
 
-[node name="CharacterBody2D" parent="." unique_id=673575696 instance=ExtResource("2_h2yge")]
+[node name="Escenario" type="Node2D" parent="." unique_id=348643549]
+
+[node name="TileMap" parent="Escenario" unique_id=510392709 instance=ExtResource("3_h2yge")]
+
+[node name="CharacterBody2D" parent="Escenario/TileMap" unique_id=673575696 instance=ExtResource("2_h2yge")]
 position = Vector2(229, 126)
