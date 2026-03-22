@@ -8,6 +8,9 @@ public partial class PlayerController : CharacterBody2D
 	[Export]
 	public int Speed = 400;
 
+	[Export]
+	public int PlayerIndex = 1;
+
 	private AnimationTree _animationTree;
 	private Vector2 _moveDirection;
 	private Node2D _farmTool;
@@ -23,7 +26,13 @@ public partial class PlayerController : CharacterBody2D
 	private bool _canAction = true;
 	private string _basePosition = "DOWN";
 
-	public override void _Ready()
+	private string ActionLeft => PlayerIndex == 1 ? "p1_left" : "p2_left";
+	private string ActionRight => PlayerIndex == 1 ? "p1_right" : "p2_right";
+	private string ActionUp => PlayerIndex == 1 ? "p1_up" : "p2_up";
+	private string ActionDown => PlayerIndex == 1 ? "p1_down" : "p2_down";
+	private string ActionSelect => PlayerIndex == 1 ? "p1_action" : "p2_action";
+
+    public override void _Ready()
 	{
 		_animationTree = GetNode<AnimationTree>("AnimationTree");
 		_farmTool = GetNode<Node2D>("FarmTool");
@@ -56,7 +65,7 @@ public partial class PlayerController : CharacterBody2D
 	{
 		if (_canMove && _canAction)
 		{
-			if (@event.IsActionPressed("ui_select"))
+			if (@event.IsActionPressed(ActionSelect))
 			{
 				_viewDirectionCollision.Disabled = false;
 				_canMove = false;
@@ -104,7 +113,7 @@ public partial class PlayerController : CharacterBody2D
 
 	private void ValidateInput()
 	{
-		_moveDirection = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+		_moveDirection = Input.GetVector(ActionLeft, ActionRight, ActionUp, ActionDown);
 		Velocity = _moveDirection * Speed;
 	}
 

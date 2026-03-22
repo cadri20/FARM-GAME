@@ -19,5 +19,9 @@ SpeedMultiplier = 3000.0
 
 [node name="TileMap" parent="Escenario" unique_id=510392709 instance=ExtResource("3_h2yge")]
 
-[node name="CharacterBody2D" parent="Escenario/TileMap" unique_id=673575696 instance=ExtResource("2_h2yge")]
+[node name="CharacterBody2D" parent="." unique_id=673575696 instance=ExtResource("2_h2yge")]
 position = Vector2(229, 126)
+
+[node name="CharacterBody2D2" parent="." unique_id=1669599965 instance=ExtResource("2_h2yge")]
+position = Vector2(138, 161)
+PlayerIndex = 2
