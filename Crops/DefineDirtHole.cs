@@ -18,7 +18,7 @@ public partial class DefineDirtHole : Node2D
     public override async void _Ready()
 	{
         _crops = GetNode<Sprite2D>("Crops");
-        _mainGame = GetNode<MainRoomController>("/root/Main");
+        _mainGame = GetParent<MainRoomController>();
         _mainGame.Connect("DayChanged", new Callable(this, nameof(GrowCrop)));
 
         _randomCrop = rng.RandiRange(0, _crops.Vframes - 1);

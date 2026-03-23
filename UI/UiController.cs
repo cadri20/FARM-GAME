@@ -25,7 +25,7 @@ public partial class UiController : CanvasLayer
 		_dayText = GetNode<RichTextLabel>("Control/Day");
 		_monthText = GetNode<RichTextLabel>("Control/Month");
 
-		_mainGame = GetNode<MainRoomController>("/root/Main");
+		_mainGame = GetParent<MainRoomController>();
 		_mainGame.Connect("DayChanged", new Callable(this, nameof(OnDayChanged)));
 	}
 

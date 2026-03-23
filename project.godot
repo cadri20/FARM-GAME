@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="FarmGame"
-run/main_scene="uid://4kjj8gh3oya3"
+run/main_scene="uid://bjfsyvdpaker1"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=426
-window/size/viewport_height=240
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/stretch/mode="viewport"
 
 [dotnet]
