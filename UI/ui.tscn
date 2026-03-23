@@ -7,99 +7,121 @@
 
 [node name="UI" type="CanvasLayer" unique_id=139274513]
 
-[node name="Control" type="Control" parent="." unique_id=1943517137]
+[node name="TopRight" type="Control" parent="." unique_id=1943517137]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -58.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 58.0
+grow_horizontal = 0
+grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control" unique_id=425632992]
-layout_mode = 0
-offset_left = 361.0
-offset_top = -2.0
-offset_right = 411.0
-offset_bottom = 48.0
+[node name="TextureRect" type="TextureRect" parent="TopRight" unique_id=425632992]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_2fwl4")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="Hour" type="RichTextLabel" parent="Control" unique_id=1465284963]
+[node name="Hour" type="RichTextLabel" parent="TopRight" unique_id=1465284963]
 layout_mode = 0
-offset_left = 371.0
-offset_top = 5.0
-offset_right = 415.0
-offset_bottom = 24.0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 52.0
+offset_bottom = 20.0
 theme_override_font_sizes/normal_font_size = 11
 bbcode_enabled = true
-text = "00:00"
+text = "[center]00:00"
 scroll_active = false
 
-[node name="Day" type="RichTextLabel" parent="Control" unique_id=691165046]
+[node name="Day" type="RichTextLabel" parent="TopRight" unique_id=691165046]
 layout_mode = 0
-offset_left = 390.0
-offset_top = 18.0
-offset_right = 433.0
-offset_bottom = 40.0
+offset_left = 22.0
+offset_top = 20.0
+offset_right = 52.0
+offset_bottom = 36.0
 theme_override_font_sizes/normal_font_size = 9
 bbcode_enabled = true
-text = "00"
+text = "[center]00"
 scroll_active = false
 
-[node name="Month" type="RichTextLabel" parent="Control" unique_id=251101803]
+[node name="Month" type="RichTextLabel" parent="TopRight" unique_id=251101803]
 layout_mode = 0
-offset_left = 369.0
-offset_top = 18.0
-offset_right = 381.0
-offset_bottom = 30.0
+offset_left = 2.0
+offset_top = 20.0
+offset_right = 22.0
+offset_bottom = 36.0
 theme_override_font_sizes/normal_font_size = 9
 bbcode_enabled = true
-text = "00"
+text = "[center]00"
 scroll_active = false
 
-[node name="Money" type="RichTextLabel" parent="Control" unique_id=430952321]
+[node name="Money" type="RichTextLabel" parent="TopRight" unique_id=430952321]
 layout_mode = 0
-offset_left = 365.0
-offset_top = 33.0
-offset_right = 405.0
-offset_bottom = 53.0
+offset_left = 2.0
+offset_top = 36.0
+offset_right = 54.0
+offset_bottom = 52.0
 theme_override_font_sizes/normal_font_size = 9
-text = "$000"
+bbcode_enabled = true
+text = "[center]$000"
 scroll_active = false
 
-[node name="Control2" type="Control" parent="." unique_id=2136959074]
+[node name="BottomLeft" type="Control" parent="." unique_id=2136959074]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Control2" unique_id=1696107431]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 10.6
-anchor_top = 5.925
-anchor_right = 10.6
-anchor_bottom = 5.925
-offset_left = -32.0
-offset_top = -31.0
-offset_right = -7.0
-offset_bottom = -1.0
-grow_horizontal = 0
+anchors_preset = 2
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -38.0
+offset_right = 34.0
+offset_bottom = -4.0
+grow_horizontal = 2
 grow_vertical = 0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="BottomLeft" unique_id=1696107431]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 fill_mode = 3
 texture_under = ExtResource("2_hat8c")
 texture_progress = ExtResource("3_3sbvi")
 
-[node name="Control3" type="Control" parent="." unique_id=1370653818]
+[node name="BottomRight" type="Control" parent="." unique_id=1370653818]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_top = -38.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
 
-[node name="TextureRect" type="TextureRect" parent="Control3" unique_id=1795492796]
+[node name="TextureRect" type="TextureRect" parent="BottomRight" unique_id=1795492796]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.025
-anchor_top = 4.9
-anchor_right = 0.025
-anchor_bottom = 4.9
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("4_nm1m0")
+expand_mode = 1
+stretch_mode = 5

@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://c6v07pi8lexdv" path="res://Game2d.cs" id="1_iddsw"]
 [ext_resource type="PackedScene" uid="uid://4kjj8gh3oya3" path="res://main.tscn" id="2_64hpc"]
+[ext_resource type="PackedScene" uid="uid://bb5vl0j6ob2jx" path="res://UI/ui.tscn" id="3_ui"]
+[ext_resource type="Script" uid="uid://brhd6hct05mkj" path="res://UI/UiController.cs" id="4_uiscript"]
 
 [node name="Game2D" type="Control" unique_id=325117574]
 layout_mode = 3
@@ -39,6 +41,11 @@ enabled = true
 [node name="Level2D" parent="HBoxContainer/LeftViewportContainer/LeftSubViewport" unique_id=1165674612 instance=ExtResource("2_64hpc")]
 unique_name_in_owner = true
 
+[node name="LeftUI" parent="HBoxContainer/LeftViewportContainer/LeftSubViewport" unique_id=2100000001 instance=ExtResource("3_ui")]
+unique_name_in_owner = true
+script = ExtResource("4_uiscript")
+SpeedMultiplier = 3000.0
+
 [node name="Separator" type="ColorRect" parent="HBoxContainer" unique_id=2001000001]
 layout_mode = 2
 custom_minimum_size = Vector2(4, 0)
@@ -60,3 +67,8 @@ render_target_update_mode = 4
 [node name="RightCamera2D" type="Camera2D" parent="HBoxContainer/RightSubViewportContainer/RightSubViewport" unique_id=779289483]
 unique_name_in_owner = true
 enabled = true
+
+[node name="RightUI" parent="HBoxContainer/RightSubViewportContainer/RightSubViewport" unique_id=2100000002 instance=ExtResource("3_ui")]
+unique_name_in_owner = true
+script = ExtResource("4_uiscript")
+SpeedMultiplier = 3000.0

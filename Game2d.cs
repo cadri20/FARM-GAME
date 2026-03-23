@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 public partial class Game2d : Control
 {
+	private UiController _primaryUI;
+	private UiController _secondaryUI;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -16,12 +19,14 @@ public partial class Game2d : Control
 					SubViewport = GetNode<SubViewport>("%LeftSubViewport"),
 					Camera = GetNode<Camera2D>("%LeftCamera2D"),
 					Player = GetNode<PlayerController>("%Level2D/Player1"),
+					UI = GetNode<UiController>("%LeftUI"),
 				},
 			   new
 			   {
 				   SubViewport = GetNode<SubViewport>("%RightSubViewport"),
 				   Camera = GetNode<Camera2D>("%RightCamera2D"),
 				   Player = GetNode<PlayerController>("%Level2D/Player2"),
+				   UI = GetNode<UiController>("%RightUI"),
 			   }
 		   };
 
@@ -35,13 +40,17 @@ public partial class Game2d : Control
 			info.Camera.Enabled = true;
         }
 
+		_primaryUI = players[0].UI;
+		_primaryUI.IsPrimary = true;
 
+		_secondaryUI = players[1].UI;
+		_secondaryUI.IsPrimary = false;
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if (_primaryUI != null && _secondaryUI != null)
+			_secondaryUI.SyncTime(_primaryUI.TimeInSeconds, _primaryUI.IsNight);
 	}
-
-	
 }
