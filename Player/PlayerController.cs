@@ -183,7 +183,8 @@ public partial class PlayerController : CharacterBody2D
 			if (area.GetParent<DefineDirtHole>().FlagReady)
 			{
 				_notify.Visible = true;
-			}
+				area.GetParent<DefineDirtHole>().HarvestCrop();
+            }
 		}
 
 	}

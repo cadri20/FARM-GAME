@@ -31,12 +31,11 @@ stretch = true
 [node name="LeftSubViewport" type="SubViewport" parent="HBoxContainer/LeftViewportContainer" unique_id=1638391101]
 unique_name_in_owner = true
 handle_input_locally = false
-size = Vector2i(638, 720)
+size = Vector2i(634, 720)
 render_target_update_mode = 4
 
 [node name="LeftCamera2D" type="Camera2D" parent="HBoxContainer/LeftViewportContainer/LeftSubViewport" unique_id=153383033]
 unique_name_in_owner = true
-enabled = true
 
 [node name="Level2D" parent="HBoxContainer/LeftViewportContainer/LeftSubViewport" unique_id=1165674612 instance=ExtResource("2_64hpc")]
 unique_name_in_owner = true
@@ -44,11 +43,11 @@ unique_name_in_owner = true
 [node name="LeftUI" parent="HBoxContainer/LeftViewportContainer/LeftSubViewport" unique_id=2100000001 instance=ExtResource("3_ui")]
 unique_name_in_owner = true
 script = ExtResource("4_uiscript")
-SpeedMultiplier = 3000.0
+SpeedMultiplier = 6000.0
 
 [node name="Separator" type="ColorRect" parent="HBoxContainer" unique_id=2001000001]
-layout_mode = 2
 custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
 size_flags_vertical = 3
 color = Color(0, 0, 0, 1)
 
@@ -61,12 +60,11 @@ stretch = true
 [node name="RightSubViewport" type="SubViewport" parent="HBoxContainer/RightSubViewportContainer" unique_id=1647610113]
 unique_name_in_owner = true
 handle_input_locally = false
-size = Vector2i(638, 720)
+size = Vector2i(634, 720)
 render_target_update_mode = 4
 
 [node name="RightCamera2D" type="Camera2D" parent="HBoxContainer/RightSubViewportContainer/RightSubViewport" unique_id=779289483]
 unique_name_in_owner = true
-enabled = true
 
 [node name="RightUI" parent="HBoxContainer/RightSubViewportContainer/RightSubViewport" unique_id=2100000002 instance=ExtResource("3_ui")]
 unique_name_in_owner = true

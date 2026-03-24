@@ -7,6 +7,8 @@ public partial class MainRoomController : Node2D
 	public delegate void DayChangedEventHandler();
 
 	private CanvasModulate _nightModulate;
+	private UiController _uiController;
+
 	private bool _fadeNight = false;
 	private int _fadeDuration = 5;
 	private double _timeElapsed = 0.0;
@@ -18,6 +20,7 @@ public partial class MainRoomController : Node2D
     public override void _Ready()
 	{
 		_nightModulate = GetNode<CanvasModulate>("NightModulate");
+		_uiController = GetNode<UiController>("%LeftUI");
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -56,5 +59,10 @@ public partial class MainRoomController : Node2D
 
 		_nightModulate.Color = new Color(1, 1, 1);
 		EmitSignal(SignalName.DayChanged);
+    }
+
+	public void CropRecoleted(string idObject, int value)
+	{
+		_uiController.CropRecolected(idObject, value);
     }
 }

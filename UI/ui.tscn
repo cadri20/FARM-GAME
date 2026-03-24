@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://csr6axg07fa80" path="res://UI/Sprites/UIEnergyEmpty.png" id="2_hat8c"]
 [ext_resource type="Texture2D" uid="uid://brjijh3rjrv47" path="res://UI/Sprites/UIEnergyFull.png" id="3_3sbvi"]
 [ext_resource type="Texture2D" uid="uid://bh231hx660f2p" path="res://UI/Sprites/UITool.png" id="4_nm1m0"]
+[ext_resource type="Texture2D" uid="uid://cldbd1nyn03b4" path="res://Inventory/Inventory.png" id="5_nm1m0"]
+[ext_resource type="PackedScene" uid="uid://dhpt2jeqwfak0" path="res://Inventory/inventory_slot_1.tscn" id="6_c7tqi"]
 
 [node name="UI" type="CanvasLayer" unique_id=139274513]
 
@@ -11,9 +13,7 @@
 layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
-anchor_top = 0.0
 anchor_right = 1.0
-anchor_bottom = 0.0
 offset_left = -58.0
 offset_top = 4.0
 offset_right = -4.0
@@ -79,9 +79,7 @@ scroll_active = false
 [node name="BottomLeft" type="Control" parent="." unique_id=2136959074]
 layout_mode = 3
 anchors_preset = 2
-anchor_left = 0.0
 anchor_top = 1.0
-anchor_right = 0.0
 anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = -38.0
@@ -125,3 +123,93 @@ grow_vertical = 2
 texture = ExtResource("4_nm1m0")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="BottomCenter" type="Control" parent="." unique_id=712692465]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Inventory" type="TextureRect" parent="BottomCenter" unique_id=2134342955]
+layout_mode = 0
+offset_right = 173.0
+offset_bottom = 40.0
+texture = ExtResource("5_nm1m0")
+stretch_mode = 4
+
+[node name="InventorySlot1" parent="BottomCenter/Inventory" unique_id=1563954346 instance=ExtResource("6_c7tqi")]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 18.0
+offset_bottom = 18.0
+
+[node name="InventorySlot10" parent="BottomCenter/Inventory" unique_id=1434485433 instance=ExtResource("6_c7tqi")]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 2.0
+offset_right = 171.0
+offset_bottom = 18.0
+
+[node name="InventorySlot9" parent="BottomCenter/Inventory" unique_id=282836403 instance=ExtResource("6_c7tqi")]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 2.0
+offset_right = 154.0
+offset_bottom = 18.0
+
+[node name="InventorySlot8" parent="BottomCenter/Inventory" unique_id=1905658175 instance=ExtResource("6_c7tqi")]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 2.0
+offset_right = 137.0
+offset_bottom = 18.0
+
+[node name="InventorySlot7" parent="BottomCenter/Inventory" unique_id=2130677450 instance=ExtResource("6_c7tqi")]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 2.0
+offset_right = 120.0
+offset_bottom = 18.0
+
+[node name="InventorySlot6" parent="BottomCenter/Inventory" unique_id=1961852285 instance=ExtResource("6_c7tqi")]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 2.0
+offset_right = 103.0
+offset_bottom = 18.0
+
+[node name="InventorySlot5" parent="BottomCenter/Inventory" unique_id=568140631 instance=ExtResource("6_c7tqi")]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 2.0
+offset_right = 86.0
+offset_bottom = 18.0
+
+[node name="InventorySlot2" parent="BottomCenter/Inventory" unique_id=1217192083 instance=ExtResource("6_c7tqi")]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 2.0
+offset_right = 52.0
+offset_bottom = 18.0
+
+[node name="InventorySlot3" parent="BottomCenter/Inventory" unique_id=319919295 instance=ExtResource("6_c7tqi")]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 2.0
+offset_right = 35.0
+offset_bottom = 18.0
+
+[node name="InventorySlot4" parent="BottomCenter/Inventory" unique_id=981171695 instance=ExtResource("6_c7tqi")]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 2.0
+offset_right = 69.0
+offset_bottom = 18.0

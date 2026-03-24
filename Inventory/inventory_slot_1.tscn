@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dhpt2jeqwfak0"]
+
+[ext_resource type="Script" uid="uid://bcr6wq358ofnb" path="res://Inventory/PrefabInventorySlot.cs" id="2_08448"]
+
+[node name="InventorySlot1" type="TextureRect" unique_id=1563954346]
+visible = false
+offset_right = 16.0
+offset_bottom = 16.0
+script = ExtResource("2_08448")
+
+[node name="Label" type="Label" parent="." unique_id=1344631192]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 16.0
+offset_bottom = 17.0
+theme_override_font_sizes/font_size = 6
+text = "00"
