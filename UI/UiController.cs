@@ -16,8 +16,10 @@ public partial class UiController : CanvasLayer
 	private RichTextLabel _dayText;
 	private RichTextLabel _monthText;
 	private MainRoomController _mainGame;
-	private PrefabInventorySlot _slot1;
-	private PrefabInventorySlot _slot2;
+	public PrefabInventorySlot Slot1;
+	public PrefabInventorySlot Slot2;
+	public PrefabInventorySlot Slot3;
+	public PrefabInventorySlot Slot4;
 
 	private bool _isNight = false;
 	private double _timeInSeconds = 0.0;
@@ -28,8 +30,10 @@ public partial class UiController : CanvasLayer
 		_hourText = GetNode<RichTextLabel>("TopRight/Hour");
 		_dayText = GetNode<RichTextLabel>("TopRight/Day");
 		_monthText = GetNode<RichTextLabel>("TopRight/Month");
-		_slot1 = GetNode<PrefabInventorySlot>("BottomCenter/Inventory/InventorySlot1");
-		_slot2 = GetNode<PrefabInventorySlot>("BottomCenter/Inventory/InventorySlot2");
+		Slot1 = GetNode<PrefabInventorySlot>("BottomCenter/Inventory/InventorySlot1");
+		Slot2 = GetNode<PrefabInventorySlot>("BottomCenter/Inventory/InventorySlot2");
+		Slot3 = GetNode<PrefabInventorySlot>("BottomCenter/Inventory/InventorySlot3");
+		Slot4 = GetNode<PrefabInventorySlot>("BottomCenter/Inventory/InventorySlot4");
 
         _mainGame = GetNode<MainRoomController>("%Level2D");
 		_mainGame.Connect("DayChanged", new Callable(this, nameof(OnDayChanged)));
@@ -75,17 +79,19 @@ public partial class UiController : CanvasLayer
 		_monthText.Text = _center + $"{_mainGame.Month:00}";
 	}
 
-	public void CropRecolected(string idObjectName, int value)
+	public void CropRecolected(string idObjectName, string idObject, int value)
 	{
-		var index = idObjectName.RFind("_");
-		var subOjectId = idObjectName.Substring(index + 1);
-
-		var slot = GetNode<PrefabInventorySlot>("BottomCenter/Inventory/InventorySlot" + subOjectId);
+		var slot = GetNode<PrefabInventorySlot>("BottomCenter/Inventory/InventorySlot" + idObject);
 
         if (slot.InUse)
             slot.UpdateText(value);
         else
-            slot.SetupSlot(idObjectName, value);
+            slot.SetupSlot(idObjectName, idObject, value);
     }
 
+	public void SetupSlot(int slotNumber, string textureGroup, string idObject, int value)
+	{
+		var slot = GetNode<PrefabInventorySlot>("BottomCenter/Inventory/InventorySlot" + slotNumber);
+		slot.SetupSlot(textureGroup, idObject, value);
+    }
 }

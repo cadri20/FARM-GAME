@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://csr6axg07fa80" path="res://UI/Sprites/UIEnergyEmpty.png" id="2_hat8c"]
 [ext_resource type="Texture2D" uid="uid://brjijh3rjrv47" path="res://UI/Sprites/UIEnergyFull.png" id="3_3sbvi"]
 [ext_resource type="Texture2D" uid="uid://bh231hx660f2p" path="res://UI/Sprites/UITool.png" id="4_nm1m0"]
+[ext_resource type="PackedScene" uid="uid://4l6gp561vymj" path="res://Inventory/inventory_highlight.tscn" id="5_c7tqi"]
 [ext_resource type="Texture2D" uid="uid://cldbd1nyn03b4" path="res://Inventory/Inventory.png" id="5_nm1m0"]
 [ext_resource type="PackedScene" uid="uid://dhpt2jeqwfak0" path="res://Inventory/inventory_slot_1.tscn" id="6_c7tqi"]
 
@@ -137,6 +138,10 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 
+[node name="InventoryHighlight" parent="BottomCenter" unique_id=441111832 instance=ExtResource("5_c7tqi")]
+top_level = true
+position = Vector2(630, 690)
+
 [node name="Inventory" type="TextureRect" parent="BottomCenter" unique_id=2134342955]
 layout_mode = 0
 offset_right = 173.0
@@ -151,39 +156,25 @@ offset_top = 2.0
 offset_right = 18.0
 offset_bottom = 18.0
 
-[node name="InventorySlot10" parent="BottomCenter/Inventory" unique_id=1434485433 instance=ExtResource("6_c7tqi")]
+[node name="InventorySlot2" parent="BottomCenter/Inventory" unique_id=1217192083 instance=ExtResource("6_c7tqi")]
 layout_mode = 0
-offset_left = 155.0
+offset_left = 19.0
 offset_top = 2.0
-offset_right = 171.0
+offset_right = 35.0
 offset_bottom = 18.0
 
-[node name="InventorySlot9" parent="BottomCenter/Inventory" unique_id=282836403 instance=ExtResource("6_c7tqi")]
+[node name="InventorySlot3" parent="BottomCenter/Inventory" unique_id=319919295 instance=ExtResource("6_c7tqi")]
 layout_mode = 0
-offset_left = 138.0
-offset_top = 2.0
-offset_right = 154.0
-offset_bottom = 18.0
+offset_left = 36.0
+offset_top = 3.0
+offset_right = 52.0
+offset_bottom = 19.0
 
-[node name="InventorySlot8" parent="BottomCenter/Inventory" unique_id=1905658175 instance=ExtResource("6_c7tqi")]
+[node name="InventorySlot4" parent="BottomCenter/Inventory" unique_id=981171695 instance=ExtResource("6_c7tqi")]
 layout_mode = 0
-offset_left = 121.0
+offset_left = 53.0
 offset_top = 2.0
-offset_right = 137.0
-offset_bottom = 18.0
-
-[node name="InventorySlot7" parent="BottomCenter/Inventory" unique_id=2130677450 instance=ExtResource("6_c7tqi")]
-layout_mode = 0
-offset_left = 104.0
-offset_top = 2.0
-offset_right = 120.0
-offset_bottom = 18.0
-
-[node name="InventorySlot6" parent="BottomCenter/Inventory" unique_id=1961852285 instance=ExtResource("6_c7tqi")]
-layout_mode = 0
-offset_left = 87.0
-offset_top = 2.0
-offset_right = 103.0
+offset_right = 69.0
 offset_bottom = 18.0
 
 [node name="InventorySlot5" parent="BottomCenter/Inventory" unique_id=568140631 instance=ExtResource("6_c7tqi")]
@@ -193,23 +184,37 @@ offset_top = 2.0
 offset_right = 86.0
 offset_bottom = 18.0
 
-[node name="InventorySlot2" parent="BottomCenter/Inventory" unique_id=1217192083 instance=ExtResource("6_c7tqi")]
+[node name="InventorySlot6" parent="BottomCenter/Inventory" unique_id=1961852285 instance=ExtResource("6_c7tqi")]
 layout_mode = 0
-offset_left = 36.0
+offset_left = 87.0
 offset_top = 2.0
-offset_right = 52.0
+offset_right = 103.0
 offset_bottom = 18.0
 
-[node name="InventorySlot3" parent="BottomCenter/Inventory" unique_id=319919295 instance=ExtResource("6_c7tqi")]
+[node name="InventorySlot7" parent="BottomCenter/Inventory" unique_id=2130677450 instance=ExtResource("6_c7tqi")]
 layout_mode = 0
-offset_left = 19.0
+offset_left = 104.0
 offset_top = 2.0
-offset_right = 35.0
+offset_right = 120.0
 offset_bottom = 18.0
 
-[node name="InventorySlot4" parent="BottomCenter/Inventory" unique_id=981171695 instance=ExtResource("6_c7tqi")]
+[node name="InventorySlot8" parent="BottomCenter/Inventory" unique_id=1905658175 instance=ExtResource("6_c7tqi")]
 layout_mode = 0
-offset_left = 53.0
+offset_left = 121.0
 offset_top = 2.0
-offset_right = 69.0
+offset_right = 137.0
+offset_bottom = 18.0
+
+[node name="InventorySlot9" parent="BottomCenter/Inventory" unique_id=282836403 instance=ExtResource("6_c7tqi")]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 2.0
+offset_right = 154.0
+offset_bottom = 18.0
+
+[node name="InventorySlot10" parent="BottomCenter/Inventory" unique_id=1434485433 instance=ExtResource("6_c7tqi")]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 2.0
+offset_right = 171.0
 offset_bottom = 18.0

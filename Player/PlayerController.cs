@@ -21,6 +21,7 @@ public partial class PlayerController : CharacterBody2D
 	private PackedScene _dirtHolePreload;
 	private Area2D _actionables;
 	private Sprite2D _notify;
+	private MainRoomController _mainGame;
 
 	private bool _canMove = true;
 	private bool _canAction = true;
@@ -42,8 +43,9 @@ public partial class PlayerController : CharacterBody2D
 		_viewDirectionCollision = _viewDirectionArea.GetNode<CollisionShape2D>("CollisionShape2D");
 		_actionables = GetNode<Area2D>("Actionables");
 		_notify = GetNode<Sprite2D>("Notify");
+		_mainGame = GetParent<MainRoomController>();
 
-		_animationTree.Active = true;
+        _animationTree.Active = true;
 		_viewDirectionArea.BodyEntered += CheckGround;
 		_dirtHolePreload = GD.Load<PackedScene>("res://Crops/hole.tscn");
 	}
@@ -63,9 +65,9 @@ public partial class PlayerController : CharacterBody2D
 
 	public override async void _UnhandledInput(InputEvent @event)
 	{
-		if (_canMove && _canAction)
+		if (_canMove && _canAction && _mainGame.SlotInUse != null)
 		{
-			if (@event.IsActionPressed(ActionSelect))
+			if (@event.IsActionPressed(ActionSelect) && _mainGame.SlotInUse.TextureName == "FarmSeeds")
 			{
 				_viewDirectionCollision.Disabled = false;
 				_canMove = false;
@@ -165,6 +167,7 @@ public partial class PlayerController : CharacterBody2D
 	{
 		var dirtHoleInst = _dirtHolePreload.Instantiate<DefineDirtHole>();
 		dirtHoleInst.Position = _viewDirectionCollision.GlobalPosition;
+		dirtHoleInst.RandomCrop = int.Parse(_mainGame.SlotInUse.idTexture);
 		GetParent().CallDeferred("add_child", dirtHoleInst);
 	}
 

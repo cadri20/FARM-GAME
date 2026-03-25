@@ -15,12 +15,15 @@ public partial class MainRoomController : Node2D
 
 	public int Day = 1;
 	public int Month = 1;
+    public PrefabInventorySlot SlotInUse;
+
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
 		_nightModulate = GetNode<CanvasModulate>("NightModulate");
 		_uiController = GetNode<UiController>("%LeftUI");
+		SetInventoryTemporal();
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -61,8 +64,19 @@ public partial class MainRoomController : Node2D
 		EmitSignal(SignalName.DayChanged);
     }
 
-	public void CropRecoleted(string idObject, int value)
+	public void CropRecoleted(string idObjectName, string idObject, int value)
 	{
-		_uiController.CropRecolected(idObject, value);
+		_uiController.CropRecolected(idObjectName, idObject, value);
+    }
+
+	public void SetupSlotInUse(PrefabInventorySlot slot)
+	{
+		SlotInUse = slot;
+    }
+
+	private void SetInventoryTemporal()
+	{
+		_uiController.SetupSlot(3, "FarmSeeds", "0", 1);
+		_uiController.SetupSlot(4, "FarmSeeds", "1", 1);
     }
 }

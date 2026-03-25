@@ -9,9 +9,9 @@ public partial class DefineDirtHole : Node2D
     
     public bool FlagReady = false;
     public bool CropDisabled = false;
+    public int RandomCrop = 0;
 
     private int _growCropId = 0;
-    private int _randomCrop = 0;
     private RandomNumberGenerator rng = new RandomNumberGenerator();
     private Sprite2D _crops;
     private MainRoomController _mainGame;
@@ -25,9 +25,9 @@ public partial class DefineDirtHole : Node2D
         _mainGame = GetParent<MainRoomController>();
         _mainGame.Connect("DayChanged", new Callable(this, nameof(GrowCrop)));
 
-        _randomCrop = rng.RandiRange(0, _crops.Vframes - 1);
+        //_randomCrop = rng.RandiRange(0, _crops.Vframes - 1);
         _crops.Visible = true;
-        _crops.FrameCoords = new Vector2I(_growCropId, _randomCrop);
+        _crops.FrameCoords = new Vector2I(_growCropId, RandomCrop);
         _areaCollision = GetNode<CollisionShape2D>("Area2D/CollisionShape2D");
     }
 
@@ -41,7 +41,7 @@ public partial class DefineDirtHole : Node2D
         if (_growCropId < _crops.Hframes - 1)
         {
             _growCropId++;
-            _crops.FrameCoords = new Vector2I(_growCropId, _randomCrop);
+            _crops.FrameCoords = new Vector2I(_growCropId, RandomCrop);
         }
         else
             FlagReady = true;
@@ -53,7 +53,7 @@ public partial class DefineDirtHole : Node2D
         {
             CropDisabled = true;
             _areaCollision.Disabled = true;
-            _mainGame.CropRecoleted("FarmCrops_" + _randomCrop, 1);
+            _mainGame.CropRecoleted("FarmCrops", (RandomCrop + 1).ToString(), 1);
             CallDeferred("queue_free");
         }
     }
