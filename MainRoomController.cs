@@ -76,7 +76,9 @@ public partial class MainRoomController : Node2D
 
 	private void SetInventoryTemporal()
 	{
-		_uiController.SetupSlot(3, "FarmSeeds", "0", 1);
-		_uiController.SetupSlot(4, "FarmSeeds", "1", 1);
+        _uiController.CropRecolected("PlayerTools", "0", 1);
+        _uiController.CropRecolected("PlayerTools", "1", 1);
+        _uiController.CropRecolected("FarmSeeds", "0", 1);
+		_uiController.CropRecolected("FarmSeeds", "1", 1);
     }
 }

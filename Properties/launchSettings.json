@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FarmGame": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false
+    }
+  }
+}

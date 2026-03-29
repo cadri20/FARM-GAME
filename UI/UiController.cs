@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class UiController : CanvasLayer
 {
@@ -16,10 +17,7 @@ public partial class UiController : CanvasLayer
 	private RichTextLabel _dayText;
 	private RichTextLabel _monthText;
 	private MainRoomController _mainGame;
-	public PrefabInventorySlot Slot1;
-	public PrefabInventorySlot Slot2;
-	public PrefabInventorySlot Slot3;
-	public PrefabInventorySlot Slot4;
+	public Control SlotsInventory;
 
 	private bool _isNight = false;
 	private double _timeInSeconds = 0.0;
@@ -30,10 +28,7 @@ public partial class UiController : CanvasLayer
 		_hourText = GetNode<RichTextLabel>("TopRight/Hour");
 		_dayText = GetNode<RichTextLabel>("TopRight/Day");
 		_monthText = GetNode<RichTextLabel>("TopRight/Month");
-		Slot1 = GetNode<PrefabInventorySlot>("BottomCenter/Inventory/InventorySlot1");
-		Slot2 = GetNode<PrefabInventorySlot>("BottomCenter/Inventory/InventorySlot2");
-		Slot3 = GetNode<PrefabInventorySlot>("BottomCenter/Inventory/InventorySlot3");
-		Slot4 = GetNode<PrefabInventorySlot>("BottomCenter/Inventory/InventorySlot4");
+		SlotsInventory = GetNode<Control>("BottomCenter/Inventory");
 
         _mainGame = GetNode<MainRoomController>("%Level2D");
 		_mainGame.Connect("DayChanged", new Callable(this, nameof(OnDayChanged)));
@@ -81,12 +76,30 @@ public partial class UiController : CanvasLayer
 
 	public void CropRecolected(string idObjectName, string idObject, int value)
 	{
-		var slot = GetNode<PrefabInventorySlot>("BottomCenter/Inventory/InventorySlot" + idObject);
+		if(SlotsInventory == null)
+		{
+            SlotsInventory = GetNode<Control>("BottomCenter/Inventory");
+        }
+		var slots = SlotsInventory.GetChildren().Select(s => s as PrefabInventorySlot);
+		foreach(var slot in slots)
+		{
+            if (slot.InUse)
+			{
+				if(slot.TextureName == idObjectName && slot.idTexture == idObject)
+				{
+                    slot.UpdateText(value);
+					break;
+                }
+            }
+			else
+			{
+                slot.SetupSlot(idObjectName, idObject, value);
+				break;
+            }
+        }
 
-        if (slot.InUse)
-            slot.UpdateText(value);
-        else
-            slot.SetupSlot(idObjectName, idObject, value);
+
+        
     }
 
 	public void SetupSlot(int slotNumber, string textureGroup, string idObject, int value)

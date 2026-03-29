@@ -22,6 +22,7 @@ public partial class PlayerController : CharacterBody2D
 	private Area2D _actionables;
 	private Sprite2D _notify;
 	private MainRoomController _mainGame;
+	private Sprite2D _farmToolSprite;
 
 	private bool _canMove = true;
 	private bool _canAction = true;
@@ -43,7 +44,8 @@ public partial class PlayerController : CharacterBody2D
 		_viewDirectionCollision = _viewDirectionArea.GetNode<CollisionShape2D>("CollisionShape2D");
 		_actionables = GetNode<Area2D>("Actionables");
 		_notify = GetNode<Sprite2D>("Notify");
-		_mainGame = GetParent<MainRoomController>();
+		_farmToolSprite = _farmTool.GetNode<Sprite2D>("Sprite2D");
+        _mainGame = GetParent<MainRoomController>();
 
         _animationTree.Active = true;
 		_viewDirectionArea.BodyEntered += CheckGround;
@@ -67,23 +69,26 @@ public partial class PlayerController : CharacterBody2D
 	{
 		if (_canMove && _canAction && _mainGame.SlotInUse != null)
 		{
-			if (@event.IsActionPressed(ActionSelect) && _mainGame.SlotInUse.TextureName == "FarmSeeds")
+			if (@event.IsActionPressed(ActionSelect))
 			{
-				_viewDirectionCollision.Disabled = false;
-				_canMove = false;
-				_canAction = false;
-				_animationTree.Set("parameters/conditions/UsingTool", true);
-				UsingTool(true);
-				_animationTree.Set("parameters/conditions/Idle", false);
-				_animationTree.Set("parameters/conditions/Walk", false);
-				await ToSignal(GetTree().CreateTimer(0.6f), SceneTreeTimer.SignalName.Timeout);
-				_animationTree.Set("parameters/conditions/Idle", true);
-				_animationTree.Set("parameters/conditions/UsingTool", false);
-				UsingTool(false);
-				_canMove = true;
-				await EnableAction();
-				_viewDirectionCollision.Disabled = true;
-			}
+                await TimerCollision();
+                if (_mainGame.SlotInUse.TextureName == "PlayerTools")
+                {
+                    _canMove = false;
+                    _canAction = false;
+                    _farmToolSprite.Texture = GD.Load<Texture2D>($"res://Tools/PlayerTool_{_mainGame.SlotInUse.idTexture}.png");
+                    _animationTree.Set("parameters/conditions/UsingTool", true);
+                    UsingTool(true);
+                    _animationTree.Set("parameters/conditions/Idle", false);
+                    _animationTree.Set("parameters/conditions/Walk", false);
+                    await ToSignal(GetTree().CreateTimer(0.6f), SceneTreeTimer.SignalName.Timeout);
+                    _animationTree.Set("parameters/conditions/Idle", true);
+                    _animationTree.Set("parameters/conditions/UsingTool", false);
+                    UsingTool(false);
+                    _canMove = true;
+                    await EnableAction();
+                }
+            }
 		}
 	}
 
@@ -107,7 +112,14 @@ public partial class PlayerController : CharacterBody2D
 		_viewDirectionCollision.GlobalPosition = new Vector2(resultX, resultY);
 	}
 
-	private async Task EnableAction()
+	private async Task TimerCollision()
+	{
+		_viewDirectionCollision.Disabled = false;
+		await ToSignal(GetTree().CreateTimer(0.025f), SceneTreeTimer.SignalName.Timeout);
+        _viewDirectionCollision.Disabled = true;
+    }
+
+    private async Task EnableAction()
 	{
 		await ToSignal(GetTree().CreateTimer(0.2f), SceneTreeTimer.SignalName.Timeout);
 		_canAction = true;
@@ -165,10 +177,32 @@ public partial class PlayerController : CharacterBody2D
 
 	private void CheckGround(Node2D body)
 	{
-		var dirtHoleInst = _dirtHolePreload.Instantiate<DefineDirtHole>();
-		dirtHoleInst.Position = _viewDirectionCollision.GlobalPosition;
-		dirtHoleInst.RandomCrop = int.Parse(_mainGame.SlotInUse.idTexture);
-		GetParent().CallDeferred("add_child", dirtHoleInst);
+		if(_mainGame.SlotInUse.TextureName == "PlayerTools" && _mainGame.SlotInUse.idTexture == "0")
+		{
+			if(ValidateIfHole() == null)
+			{
+                var dirtHoleInst = _dirtHolePreload.Instantiate<DefineDirtHole>();
+                dirtHoleInst.GlobalPosition = new Vector2(float.Round(_viewDirectionCollision.GlobalPosition.X), float.Round(_viewDirectionCollision.GlobalPosition.Y));
+                dirtHoleInst.Name = $"DirtHole_{float.Round(_viewDirectionCollision.GlobalPosition.X)}_{float.Round(_viewDirectionCollision.GlobalPosition.Y)}";
+                GetParent().CallDeferred("add_child", dirtHoleInst);
+            }
+		}
+
+		if(_mainGame.SlotInUse.TextureName == "FarmSeeds")
+		{
+			var dirtHole = ValidateIfHole();
+			if(dirtHole != null)
+			{
+				dirtHole.RandomCrop = int.Parse(_mainGame.SlotInUse.idTexture);
+				dirtHole.SetupCrop();
+            }
+		}
+    }
+
+    private DefineDirtHole ValidateIfHole()
+	{
+		var holeName = $"DirtHole_{float.Round(_viewDirectionCollision.GlobalPosition.X)}_{float.Round(_viewDirectionCollision.GlobalPosition.Y)}";
+		return GetParent().GetNodeOrNull<DefineDirtHole>(holeName);
 	}
 
 	private void CheckActionables()

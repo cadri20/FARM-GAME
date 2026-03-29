@@ -28,7 +28,12 @@ public partial class PrefabInventorySlot : TextureRect
 		TextureName = textureGroup;
 		idTexture = idObject;
         Texture = GD.Load<Texture2D>($"res://Inventory/Icons/IcoInv_{textureGroup}_{idObject}.png");
-		UpdateText(value);
+		if(textureGroup == "PlayerTools")
+		{
+			_textAmount ??= GetNode<Label>("Label");
+            _textAmount.Visible = false;
+		}else
+			UpdateText(value);
 		Visible = true;
 
 	}

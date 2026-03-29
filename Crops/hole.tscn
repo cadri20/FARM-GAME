@@ -23,6 +23,7 @@ script = ExtResource("3_a0eae")
 shape = SubResource("RectangleShape2D_btjte")
 
 [node name="Crops" type="Sprite2D" parent="." unique_id=1529975084]
+visible = false
 position = Vector2(0, -7)
 texture = ExtResource("4_7r2di")
 hframes = 4

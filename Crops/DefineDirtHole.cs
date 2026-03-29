@@ -23,11 +23,8 @@ public partial class DefineDirtHole : Node2D
 	{
         _crops = GetNode<Sprite2D>("Crops");
         _mainGame = GetParent<MainRoomController>();
-        _mainGame.Connect("DayChanged", new Callable(this, nameof(GrowCrop)));
 
         //_randomCrop = rng.RandiRange(0, _crops.Vframes - 1);
-        _crops.Visible = true;
-        _crops.FrameCoords = new Vector2I(_growCropId, RandomCrop);
         _areaCollision = GetNode<CollisionShape2D>("Area2D/CollisionShape2D");
     }
 
@@ -35,6 +32,13 @@ public partial class DefineDirtHole : Node2D
 	public override void _Process(double delta)
 	{
 	}
+
+    public void SetupCrop()
+    {
+        _crops.Visible = true;
+        _crops.FrameCoords = new Vector2I(RandomCrop, _growCropId);
+        _mainGame.DayChanged += GrowCrop;
+    }
 
     private void GrowCrop()
     {
@@ -53,7 +57,7 @@ public partial class DefineDirtHole : Node2D
         {
             CropDisabled = true;
             _areaCollision.Disabled = true;
-            _mainGame.CropRecoleted("FarmCrops", (RandomCrop + 1).ToString(), 1);
+            _mainGame.CropRecoleted("FarmCrops", (RandomCrop).ToString(), 1);
             CallDeferred("queue_free");
         }
     }

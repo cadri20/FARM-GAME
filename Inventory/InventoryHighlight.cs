@@ -36,12 +36,12 @@ public partial class InventoryHighlight : Node2D
 			if (buttonEvent.ButtonIndex == MouseButton.WheelUp)
 			{
 				FlagWheel = false;
-				MoveSlotUp();
+				MoveSlotDown();
 			}
 			else if(buttonEvent.ButtonIndex == MouseButton.WheelDown)
             {
 				FlagWheel = false;
-				MoveSlotDown();
+				MoveSlotUp();
 			}
 		}
 	}
