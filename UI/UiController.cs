@@ -8,7 +8,7 @@ public partial class UiController : CanvasLayer
 	public double SpeedMultiplier { get; set; }
 
 	[Export]
-	public bool IsPrimary { get; set; } = false;
+	public bool IsPrimary { get; set; }
 
 	public double TimeInSeconds => _timeInSeconds;
 	public bool IsNight => _isNight;
@@ -32,7 +32,11 @@ public partial class UiController : CanvasLayer
 
         _mainGame = GetNode<MainRoomController>("%Level2D");
 		_mainGame.Connect("DayChanged", new Callable(this, nameof(OnDayChanged)));
-	}
+
+		var inventoryHighlight = GetNode<InventoryHighlight>("BottomCenter/InventoryHighlight");
+
+		inventoryHighlight.PlayerId = IsPrimary ? 1 : 2;
+    }
 
 	public override void _Process(double delta)
 	{

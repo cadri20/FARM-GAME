@@ -8,6 +8,7 @@ public partial class MainRoomController : Node2D
 
 	private CanvasModulate _nightModulate;
 	private UiController _uiController;
+	private UiController _uiController2;
 
 	private bool _fadeNight = false;
 	private int _fadeDuration = 5;
@@ -23,7 +24,8 @@ public partial class MainRoomController : Node2D
 	{
 		_nightModulate = GetNode<CanvasModulate>("NightModulate");
 		_uiController = GetNode<UiController>("%LeftUI");
-		SetInventoryTemporal();
+		_uiController2 = GetNode<UiController>("%RightUI");
+        SetInventoryTemporal();
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -80,5 +82,10 @@ public partial class MainRoomController : Node2D
         _uiController.CropRecolected("PlayerTools", "1", 1);
         _uiController.CropRecolected("FarmSeeds", "0", 1);
 		_uiController.CropRecolected("FarmSeeds", "1", 1);
+
+        _uiController2.CropRecolected("PlayerTools", "0", 1);
+        _uiController2.CropRecolected("PlayerTools", "1", 1);
+        _uiController2.CropRecolected("FarmSeeds", "0", 1);
+        _uiController2.CropRecolected("FarmSeeds", "1", 1);
     }
 }

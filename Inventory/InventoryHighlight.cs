@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 public partial class InventoryHighlight : Node2D
 {
-	private TextureRect _inventoryNode;
+	public int PlayerId { get; set; }
+
+    private TextureRect _inventoryNode;
 	private MainRoomController _mainGame;
 
 	public bool FlagWheel = false;
@@ -13,7 +15,7 @@ public partial class InventoryHighlight : Node2D
 
 	private string _nameSlot = "InventorySlot";
 
-
+	
 
 	public override async void _Ready()
 	{
@@ -31,7 +33,7 @@ public partial class InventoryHighlight : Node2D
 
 	public override void _Input(InputEvent @event)
 	{
-		if (FlagWheel && @event is InputEventMouseButton buttonEvent)
+		if (FlagWheel && PlayerId == 1 && @event is InputEventMouseButton buttonEvent)
 		{
 			if (buttonEvent.ButtonIndex == MouseButton.WheelUp)
 			{
@@ -42,6 +44,19 @@ public partial class InventoryHighlight : Node2D
             {
 				FlagWheel = false;
 				MoveSlotUp();
+			}
+		}
+		else if (FlagWheel && PlayerId == 2 && @event is InputEventJoypadButton joypadEvent && joypadEvent.Pressed)
+		{
+			if (joypadEvent.ButtonIndex == JoyButton.RightShoulder)
+			{
+				FlagWheel = false;
+				MoveSlotUp();
+			}
+			else if (joypadEvent.ButtonIndex == JoyButton.LeftShoulder)
+			{
+				FlagWheel = false;
+				MoveSlotDown();
 			}
 		}
 	}

@@ -44,6 +44,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 script = ExtResource("4_uiscript")
 SpeedMultiplier = 6000.0
+IsPrimary = true
 
 [node name="Separator" type="ColorRect" parent="HBoxContainer" unique_id=2001000001]
 custom_minimum_size = Vector2(4, 0)
