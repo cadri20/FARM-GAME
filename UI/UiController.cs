@@ -1,3 +1,4 @@
+using FarmGame.Inventory;
 using Godot;
 using System;
 using System.Linq;
@@ -17,7 +18,7 @@ public partial class UiController : CanvasLayer
 	private RichTextLabel _dayText;
 	private RichTextLabel _monthText;
 	private MainRoomController _mainGame;
-	public Control SlotsInventory;
+	private Inventory _inventory;
 
 	private bool _isNight = false;
 	private double _timeInSeconds = 0.0;
@@ -28,7 +29,8 @@ public partial class UiController : CanvasLayer
 		_hourText = GetNode<RichTextLabel>("TopRight/Hour");
 		_dayText = GetNode<RichTextLabel>("TopRight/Day");
 		_monthText = GetNode<RichTextLabel>("TopRight/Month");
-		SlotsInventory = GetNode<Control>("BottomCenter/Inventory");
+		_inventory = GetNode<Inventory>("BottomCenter/Inventory");
+
 
         _mainGame = GetNode<MainRoomController>("%Level2D");
 		_mainGame.Connect("DayChanged", new Callable(this, nameof(OnDayChanged)));
@@ -79,31 +81,12 @@ public partial class UiController : CanvasLayer
 	}
 
 	public void CropRecolected(string idObjectName, string idObject, int value)
-	{
-		if(SlotsInventory == null)
+	{ 
+		if(_inventory == null)
 		{
-            SlotsInventory = GetNode<Control>("BottomCenter/Inventory");
+			_inventory = GetNode<Inventory>("BottomCenter/Inventory");
         }
-		var slots = SlotsInventory.GetChildren().Select(s => s as PrefabInventorySlot);
-		foreach(var slot in slots)
-		{
-            if (slot.InUse)
-			{
-				if(slot.TextureName == idObjectName && slot.idTexture == idObject)
-				{
-                    slot.UpdateText(value);
-					break;
-                }
-            }
-			else
-			{
-                slot.SetupSlot(idObjectName, idObject, value);
-				break;
-            }
-        }
-
-
-        
+		_inventory.AddItem(new Item(idObjectName, idObject), value);
     }
 
 	public void SetupSlot(int slotNumber, string textureGroup, string idObject, int value)

@@ -24,6 +24,7 @@ public partial class PrefabInventorySlot : TextureRect
 	
 	public void SetupSlot(string textureGroup, string idObject, int value)
 	{
+		GD.Print("Setting up slot with texture group: " + textureGroup + ", id: " + idObject + ", value: " + value);
 		InUse = true;
 		TextureName = textureGroup;
 		idTexture = idObject;
