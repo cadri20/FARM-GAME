@@ -15,6 +15,10 @@ run/main_scene="uid://bjfsyvdpaker1"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+InventoryManager="*res://Inventory/Systems/InventoryManager.cs"
+
 [display]
 
 window/size/viewport_width=1280
@@ -24,6 +28,11 @@ window/stretch/mode="viewport"
 [dotnet]
 
 project/assembly_name="FarmGame"
+
+[editor]
+
+script/search_in_file_system=true
+script_external_editor="visual_studio"
 
 [input]
 
@@ -75,6 +84,26 @@ p1_down={
 p1_action={
 "deadzone": 0.2,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(87, 7),"global_position":Vector2(96, 55),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+p1_inv_left={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+p1_inv_right={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":15,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+p2_inv_left={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+p2_inv_right={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":15,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
 

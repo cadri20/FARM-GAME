@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dndtjf5wlo1xf"]
+
+[ext_resource type="Script" uid="uid://0bklavxxpfvf" path="res://Pot/Pot.cs" id="1_ryaxd"]
+[ext_resource type="Texture2D" uid="uid://dthey0oiq2w5g" path="res://Pot/PotSprite.png" id="1_uhb1g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhb1g"]
+size = Vector2(2.2166667, 1.7583336)
+
+[node name="Pot" type="Node2D" unique_id=986555980]
+script = ExtResource("1_ryaxd")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=975952014]
+
+[node name="PotSprite" type="Sprite2D" parent="Area2D" unique_id=95523673]
+position = Vector2(50.000004, -138)
+scale = Vector2(0.080000006, 0.080000006)
+texture = ExtResource("1_uhb1g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=275379840]
+position = Vector2(50.000004, -137.00002)
+scale = Vector2(15, 15)
+shape = SubResource("RectangleShape2D_uhb1g")
