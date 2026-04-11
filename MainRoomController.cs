@@ -26,6 +26,12 @@ public partial class MainRoomController : Node2D
 		_uiController = GetNode<UiController>("%LeftUI");
 		_uiController2 = GetNode<UiController>("%RightUI");
         SetInventoryTemporal();
+
+		var player1 = GetNode<PlayerController>("%Player1");
+		var player2 = GetNode<PlayerController>("%Player2");
+
+		player1.Inventory = _uiController.GetNode<Inventory>("BottomCenter/Inventory");
+		player2.Inventory = _uiController2.GetNode<Inventory>("BottomCenter/Inventory");
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -85,6 +91,7 @@ public partial class MainRoomController : Node2D
 
         _uiController2.CropRecolected("PlayerTools", "0", 1);
         _uiController2.CropRecolected("PlayerTools", "1", 1);
+        _uiController2.CropRecolected("SimpleItem", "1", 1);
         _uiController2.CropRecolected("FarmSeeds", "0", 1);
         _uiController2.CropRecolected("FarmSeeds", "1", 1);
     }

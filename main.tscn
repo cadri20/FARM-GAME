@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://16adk3m2luec" path="res://MainRoomController.cs" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://3rkjjkwinotm" path="res://Player/player.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://d14vf1dyxrxmg" path="res://Tiles/main_map.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dndtjf5wlo1xf" path="res://Pot/pot.tscn" id="4_1bvp3"]
 
 [node name="Main" type="Node2D" unique_id=1165674612]
 script = ExtResource("1_1bvp3")
@@ -21,3 +22,6 @@ position = Vector2(229, 126)
 unique_name_in_owner = true
 position = Vector2(138, 161)
 PlayerIndex = 2
+
+[node name="Pot" parent="." unique_id=986555980 instance=ExtResource("4_1bvp3")]
+position = Vector2(208, 407)

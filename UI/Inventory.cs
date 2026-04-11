@@ -40,7 +40,21 @@ public partial class Inventory : TextureRect
 		UpdateInventoryUI();
     }
 
-	private void UpdateInventoryUI()
+	public void RemoveItem(Item item, int amount)
+	{
+		if (!items.ContainsKey(item))
+		{
+			GD.Print($"Cannot remove {item.Id} - not in inventory.");
+			return;
+		}
+		items[item] -= amount;
+		if (items[item] <= 0)
+			items.Remove(item);
+		GD.Print($"Removed {amount} of {item.Id} from inventory. Remaining: {items.GetValueOrDefault(item, 0)}");
+		UpdateInventoryUI();
+    }
+
+    private void UpdateInventoryUI()
 	{
 		int index = 1;
 		foreach (var kvp in items)

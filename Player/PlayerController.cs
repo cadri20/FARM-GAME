@@ -1,3 +1,4 @@
+using FarmGame.Inventory;
 using Godot;
 using System;
 using System.Runtime.ConstrainedExecution;
@@ -10,6 +11,8 @@ public partial class PlayerController : CharacterBody2D
 
 	[Export]
 	public int PlayerIndex = 1;
+
+	public Inventory Inventory { get; set; }
 
 	private AnimationTree _animationTree;
 	private Vector2 _moveDirection;
@@ -195,8 +198,17 @@ public partial class PlayerController : CharacterBody2D
 			{
 				dirtHole.RandomCrop = int.Parse(_mainGame.SlotInUse.idTexture);
 				dirtHole.SetupCrop();
+				Inventory.RemoveItem(new Item(_mainGame.SlotInUse.TextureName, _mainGame.SlotInUse.idTexture), 1);
             }
 		}
+		if(_mainGame.SlotInUse.TextureName == "SimpleItem" && _mainGame.SlotInUse.idTexture == "1")
+		{
+			var pot = ValidateIfPot();
+			if(pot != null)
+			{
+				pot.Cook();
+			}
+        }
     }
 
     private DefineDirtHole ValidateIfHole()
@@ -205,6 +217,19 @@ public partial class PlayerController : CharacterBody2D
 		return GetParent().GetNodeOrNull<DefineDirtHole>(holeName);
 	}
 
+	private Pot ValidateIfPot()
+	{
+		var areas = _actionables.GetOverlappingAreas();
+		
+		foreach(var area in areas)
+		{
+			if (area.GetParent() is Pot pot)
+			{
+				return pot;
+			}
+		}
+		return null;
+    }
 	private void CheckActionables()
 	{
 		var areas = _actionables.GetOverlappingAreas();
@@ -217,10 +242,11 @@ public partial class PlayerController : CharacterBody2D
 
 		foreach(var area in areas)
 		{
-			if (area.GetParent<DefineDirtHole>().FlagReady)
+			if ((area.GetParent() is DefineDirtHole dirtHole) && dirtHole.FlagReady)
 			{
 				_notify.Visible = true;
-				area.GetParent<DefineDirtHole>().HarvestCrop();
+				var cropItem = dirtHole.HarvestCrop();
+				Inventory.AddItem(cropItem, 1); 
             }
 		}
 

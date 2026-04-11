@@ -1,10 +1,12 @@
+using FarmGame.Inventory;
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class Pot : Node2D
 {
-	private List<string> ingredients = new List<string>();
+	private List<Item> ingredients = new ();
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
@@ -15,10 +17,22 @@ public partial class Pot : Node2D
 	{
 	}
 
-	public void AddIngredient(string objectId)
+	public void AddIngredient(Item item)
 	{
-		ingredients.Add(objectId);
-		GD.Print($"Added ingredient: {objectId}");
+		ingredients.Add(item);
+		GD.Print($"Added ingredient: {item.TextureGroup} {item.Id}");
+    }
+
+	public Item Cook()
+	{
+		if (ingredients.Count == 0)
+		{
+			GD.Print("No ingredients to cook!");
+			return new Item("SimpleItem", "2");
+		}
+
+		return null;
+		
     }
 
 

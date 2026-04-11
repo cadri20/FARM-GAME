@@ -1,3 +1,4 @@
+using FarmGame.Inventory;
 using Godot;
 using System;
 using System.Threading.Tasks;
@@ -51,14 +52,20 @@ public partial class DefineDirtHole : Node2D
             FlagReady = true;
     }
 
-    public void HarvestCrop()
+    public Item HarvestCrop()
     {
         if (!CropDisabled)
         {
             CropDisabled = true;
             _areaCollision.Disabled = true;
-            _mainGame.CropRecoleted("FarmCrops", (RandomCrop).ToString(), 1);
+            var item = new Item("FarmCrops", (RandomCrop).ToString());
+            //_mainGame.CropRecoleted("FarmCrops", (RandomCrop).ToString(), 1);
             CallDeferred("queue_free");
+            return item;
+        }
+        else
+        {
+            return null;
         }
     }
 }
