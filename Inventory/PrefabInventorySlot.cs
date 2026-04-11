@@ -46,4 +46,16 @@ public partial class PrefabInventorySlot : TextureRect
 		Amount += value;
 		_textAmount.Text = value.ToString();
     }
+
+	public void ClearSlot()
+	{
+		InUse = false;
+		TextureName = "";
+		idTexture = "0";
+		Texture = null;
+		_textAmount ??= GetNode<Label>("Label");
+		_textAmount.Text = "";
+		_textAmount.Visible = true;
+		Visible = false;
+    }
 }
