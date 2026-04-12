@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bhvm31idb8tio" path="res://Tools/farm_tool.tscn" id="3_btcbx"]
 [ext_resource type="Texture2D" uid="uid://fmmg7yphued1" path="res://Crops/InteractNotification.png" id="4_gwnis"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gwnis"]
+
 [sub_resource type="Animation" id="Animation_gwnis"]
 resource_name = "Idle_Down"
 loop_mode = 2
@@ -357,6 +359,9 @@ size = Vector2(20, 13)
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=673575696]
 script = ExtResource("1_4ntmi")
 Speed = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=939577230]
+shape = SubResource("RectangleShape2D_gwnis")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=903333198]
 texture = ExtResource("2_btcbx")

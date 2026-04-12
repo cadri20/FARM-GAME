@@ -52,7 +52,18 @@ public partial class MainRoomController : Node2D
 
 			}
 		}
+
+		MoveNpc(delta);
 	}
+
+	private void MoveNpc(double delta)
+	{
+		var npc = GetNode<Npc>("Path2D/PathFollow2D/NPC");
+		var pathFollow = GetNode<PathFollow2D>("Path2D/PathFollow2D");
+        //npc.GlobalPosition = pathFollow.GlobalPosition;
+		if(npc.CanMove)
+			pathFollow.Progress += npc.Speed * (float)delta;
+    }
 
 	public void StartNight()
 	{
@@ -86,8 +97,8 @@ public partial class MainRoomController : Node2D
 	{
         _uiController.CropRecolected("PlayerTools", "0", 1);
         _uiController.CropRecolected("PlayerTools", "1", 1);
-        _uiController.CropRecolected("FarmSeeds", "0", 1);
-		_uiController.CropRecolected("FarmSeeds", "1", 1);
+        _uiController.CropRecolected("FarmSeeds", "0", 20);
+		_uiController.CropRecolected("FarmSeeds", "1", 20);
 
         _uiController2.CropRecolected("PlayerTools", "0", 1);
         _uiController2.CropRecolected("PlayerTools", "1", 1);

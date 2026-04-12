@@ -36,6 +36,7 @@ public partial class PlayerController : CharacterBody2D
 	private string ActionUp => PlayerIndex == 1 ? "p1_up" : "p2_up";
 	private string ActionDown => PlayerIndex == 1 ? "p1_down" : "p2_down";
 	private string ActionSelect => PlayerIndex == 1 ? "p1_action" : "p2_action";
+	private string ActionTalk => PlayerIndex == 1 ? "talk" : "talk";
 
     public override void _Ready()
 	{
@@ -64,7 +65,8 @@ public partial class PlayerController : CharacterBody2D
 			MoveAndSlide();
 			CheckPositionView();
 			CheckActionables();
-		}
+			CheckViewActionables();
+        }
 
 	}
 
@@ -92,6 +94,11 @@ public partial class PlayerController : CharacterBody2D
                     await EnableAction();
                 }
             }
+
+			if (@event.IsActionPressed(ActionTalk))
+			{
+				await TimerCollision();
+			}
 		}
 	}
 
@@ -180,27 +187,32 @@ public partial class PlayerController : CharacterBody2D
 
 	private void CheckGround(Node2D body)
 	{
-		if(_mainGame.SlotInUse.TextureName == "PlayerTools" && _mainGame.SlotInUse.idTexture == "0")
+		if(body is TileMap)
 		{
-			if(ValidateIfHole() == null)
-			{
-                var dirtHoleInst = _dirtHolePreload.Instantiate<DefineDirtHole>();
-                dirtHoleInst.GlobalPosition = new Vector2(float.Round(_viewDirectionCollision.GlobalPosition.X), float.Round(_viewDirectionCollision.GlobalPosition.Y));
-                dirtHoleInst.Name = $"DirtHole_{float.Round(_viewDirectionCollision.GlobalPosition.X)}_{float.Round(_viewDirectionCollision.GlobalPosition.Y)}";
-                GetParent().CallDeferred("add_child", dirtHoleInst);
+            if (_mainGame.SlotInUse.TextureName == "PlayerTools" && _mainGame.SlotInUse.idTexture == "0")
+            {
+                if (ValidateIfHole() == null)
+                {
+                    var dirtHoleInst = _dirtHolePreload.Instantiate<DefineDirtHole>();
+                    dirtHoleInst.GlobalPosition = new Vector2(float.Round(_viewDirectionCollision.GlobalPosition.X), float.Round(_viewDirectionCollision.GlobalPosition.Y));
+                    dirtHoleInst.Name = $"DirtHole_{float.Round(_viewDirectionCollision.GlobalPosition.X)}_{float.Round(_viewDirectionCollision.GlobalPosition.Y)}";
+                    GetParent().CallDeferred("add_child", dirtHoleInst);
+                }
             }
-		}
 
-		if(_mainGame.SlotInUse.TextureName == "FarmSeeds")
-		{
-			var dirtHole = ValidateIfHole();
-			if(dirtHole != null)
-			{
-				dirtHole.RandomCrop = int.Parse(_mainGame.SlotInUse.idTexture);
-				dirtHole.SetupCrop();
-				Inventory.RemoveItem(new Item(_mainGame.SlotInUse.TextureName, _mainGame.SlotInUse.idTexture), 1);
+            if (_mainGame.SlotInUse.TextureName == "FarmSeeds")
+            {
+                var dirtHole = ValidateIfHole();
+                if (dirtHole != null)
+                {
+                    dirtHole.RandomCrop = int.Parse(_mainGame.SlotInUse.idTexture);
+                    dirtHole.SetupCrop();
+                    Inventory.RemoveItem(new Item(_mainGame.SlotInUse.TextureName, _mainGame.SlotInUse.idTexture), 1);
+                }
             }
-		}
+        }
+
+		
 		if(_mainGame.SlotInUse.TextureName == "SimpleItem" && _mainGame.SlotInUse.idTexture == "1")
 		{
 			var pot = ValidateIfPot();
@@ -248,7 +260,28 @@ public partial class PlayerController : CharacterBody2D
 				var cropItem = dirtHole.HarvestCrop();
 				Inventory.AddItem(cropItem, 1); 
             }
+
+			if(area.GetParent() is Npc npc)
+			{
+				npc.CanMove = false;
+			}
 		}
 
 	}
+
+	private void CheckViewActionables()
+	{
+		if (!Input.IsActionPressed(ActionTalk))
+		{
+			return;
+		}
+		var areas = _viewDirectionArea.GetOverlappingAreas();
+		foreach(var area in areas)
+		{
+			if(area.GetParent() is Npc npc)
+			{
+				npc.CanMove = false;
+			}
+        }
+    }
 }

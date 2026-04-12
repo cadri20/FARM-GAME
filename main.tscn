@@ -4,6 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://3rkjjkwinotm" path="res://Player/player.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://d14vf1dyxrxmg" path="res://Tiles/main_map.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dndtjf5wlo1xf" path="res://Pot/pot.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://d0qvj7i1j2bvj" path="res://NPC/npc.tscn" id="5_lquwl"]
+
+[sub_resource type="Curve2D" id="Curve2D_lquwl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 367, 205, 0, 0, 0, 0, 368, 337, 0, 0, 0, 0, 173, 335, 0, 0, 0, 0, 176, 208)
+}
+point_count = 4
 
 [node name="Main" type="Node2D" unique_id=1165674612]
 script = ExtResource("1_1bvp3")
@@ -25,3 +32,15 @@ PlayerIndex = 2
 
 [node name="Pot" parent="." unique_id=986555980 instance=ExtResource("4_1bvp3")]
 position = Vector2(208, 407)
+
+[node name="Path2D" type="Path2D" parent="." unique_id=1391095707]
+curve = SubResource("Curve2D_lquwl")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=826816320]
+position = Vector2(367, 205)
+rotation = 1.5632207
+rotates = false
+
+[node name="NPC" parent="Path2D/PathFollow2D" unique_id=1444973819 instance=ExtResource("5_lquwl")]
+position = Vector2(49.892517, 14.378387)
+rotation = -1.5632207
