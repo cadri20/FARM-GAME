@@ -2,7 +2,7 @@ using Godot;
 
 public partial class Npc : CharacterBody2D
 {
-	[Export]
+    [Export]
 	public float Speed = 300.0f;
 
 	private AnimationTree _animationTree;

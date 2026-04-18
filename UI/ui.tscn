@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bb5vl0j6ob2jx"]
 
 [ext_resource type="Texture2D" uid="uid://ehgfvpuentfj" path="res://UI/Sprites/UIDayData.png" id="1_2fwl4"]
+[ext_resource type="PackedScene" uid="uid://csr6un8melfgh" path="res://Dialog/dialog.tscn" id="2_4fiuh"]
 [ext_resource type="Texture2D" uid="uid://csr6axg07fa80" path="res://UI/Sprites/UIEnergyEmpty.png" id="2_hat8c"]
 [ext_resource type="Texture2D" uid="uid://brjijh3rjrv47" path="res://UI/Sprites/UIEnergyFull.png" id="3_3sbvi"]
 [ext_resource type="Texture2D" uid="uid://bh231hx660f2p" path="res://UI/Sprites/UITool.png" id="4_nm1m0"]
@@ -138,6 +139,13 @@ offset_top = -40.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="Dialog" parent="BottomCenter" unique_id=2136522441 instance=ExtResource("2_4fiuh")]
+layout_mode = 1
+offset_left = -126.0
+offset_top = -248.0
+offset_right = -126.0
+offset_bottom = -248.0
 
 [node name="InventoryHighlight" parent="BottomCenter" unique_id=441111832 instance=ExtResource("5_c7tqi")]
 top_level = true

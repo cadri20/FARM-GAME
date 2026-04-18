@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 public partial class PlayerController : CharacterBody2D
 {
-	[Export]
+    [Signal]
+    public delegate void ShowDialogEventHandler(string who);
+
+    [Export]
 	public int Speed = 400;
 
 	[Export]
@@ -54,7 +57,10 @@ public partial class PlayerController : CharacterBody2D
         _animationTree.Active = true;
 		_viewDirectionArea.BodyEntered += CheckGround;
 		_dirtHolePreload = GD.Load<PackedScene>("res://Crops/hole.tscn");
-	}
+
+		var dialogController = GetNode<DialogController>("/root/Game2D/HBoxContainer/LeftViewportContainer/LeftSubViewport/LeftUI/BottomCenter/Dialog");
+		dialogController.DialogStarted += (who, text) => {_canMove = who != $"player{PlayerIndex}"; };
+    }
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -281,7 +287,8 @@ public partial class PlayerController : CharacterBody2D
 			if(area.GetParent() is Npc npc)
 			{
 				npc.CanMove = false;
-			}
+				EmitSignal(SignalName.ShowDialog, $"player{PlayerIndex}");
+            }
         }
     }
 }

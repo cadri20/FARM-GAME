@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://csr6un8melfgh"]
+
+[ext_resource type="Script" uid="uid://cyjdrday07ft1" path="res://Dialog/DialogController.cs" id="1_olscm"]
+[ext_resource type="Texture2D" uid="uid://cypq8wb8ee8dp" path="res://UI/Sprites/DialogBox.png" id="1_yqm1q"]
+[ext_resource type="Texture2D" uid="uid://banbvn27n2dx4" path="res://UI/Sprites/DialogResponseBox.png" id="3_m0wim"]
+
+[node name="Dialog" type="Control" unique_id=2136522441]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_olscm")
+
+[node name="Text" type="TextureRect" parent="." unique_id=987631596]
+layout_mode = 0
+offset_right = 272.0
+offset_bottom = 40.0
+texture = ExtResource("1_yqm1q")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text" unique_id=1700578407]
+layout_mode = 0
+offset_right = 417.0
+offset_bottom = 51.0
+text = "zsdsfsdfsdf"
+
+[node name="Options" type="Control" parent="." unique_id=1511567888]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Option1" type="TextureRect" parent="Options" unique_id=651907925]
+visible = false
+layout_mode = 0
+offset_left = 86.0
+offset_top = 67.0
+offset_right = 319.0
+offset_bottom = 107.0
+texture = ExtResource("3_m0wim")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Options/Option1" unique_id=1316425627]
+layout_mode = 0
+offset_right = 231.0
+offset_bottom = 40.0
+
+[node name="Option2" type="TextureRect" parent="Options" unique_id=755459375]
+visible = false
+layout_mode = 0
+offset_left = 86.0
+offset_top = 109.0
+offset_right = 319.0
+offset_bottom = 149.0
+texture = ExtResource("3_m0wim")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Options/Option2" unique_id=129698205]
+layout_mode = 0
+offset_right = 232.0
+offset_bottom = 40.0
+
+[node name="Option3" type="TextureRect" parent="Options" unique_id=1928807935]
+visible = false
+layout_mode = 0
+offset_left = 85.0
+offset_top = 151.0
+offset_right = 318.0
+offset_bottom = 191.0
+texture = ExtResource("3_m0wim")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Options/Option3" unique_id=1125318496]
+layout_mode = 0
+offset_right = 231.0
+offset_bottom = 40.0
+
+[node name="Option4" type="TextureRect" parent="Options" unique_id=1383536964]
+visible = false
+layout_mode = 0
+offset_left = 87.0
+offset_top = 197.0
+offset_right = 320.0
+offset_bottom = 237.0
+texture = ExtResource("3_m0wim")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Options/Option4" unique_id=2058203713]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 231.0
+offset_bottom = 40.0
