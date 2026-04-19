@@ -39,7 +39,7 @@ public partial class PlayerController : CharacterBody2D
 	private string ActionUp => PlayerIndex == 1 ? "p1_up" : "p2_up";
 	private string ActionDown => PlayerIndex == 1 ? "p1_down" : "p2_down";
 	private string ActionSelect => PlayerIndex == 1 ? "p1_action" : "p2_action";
-	private string ActionTalk => PlayerIndex == 1 ? "talk" : "talk";
+	private string ActionTalk => PlayerIndex == 1 ? "p1_talk" : "p2_talk";
 
     public override void _Ready()
 	{
@@ -58,8 +58,12 @@ public partial class PlayerController : CharacterBody2D
 		_viewDirectionArea.BodyEntered += CheckGround;
 		_dirtHolePreload = GD.Load<PackedScene>("res://Crops/hole.tscn");
 
-		var dialogController = GetNode<DialogController>("/root/Game2D/HBoxContainer/LeftViewportContainer/LeftSubViewport/LeftUI/BottomCenter/Dialog");
-		dialogController.DialogStarted += (who, text) => {_canMove = who != $"player{PlayerIndex}"; };
+		var uiRoute = $"/root/Game2D/HBoxContainer/{(PlayerIndex == 1 ? "Left" : "Right")}ViewportContainer/{(PlayerIndex == 1 ? "Left" : "Right")}SubViewport/{(PlayerIndex == 1 ? "Left" : "Right")}UI/BottomCenter/Dialog";
+        var dialogController = GetNode<DialogController>(uiRoute);
+		dialogController.DialogStarted += (who, text) => 
+		{
+			_canMove = who != $"player{PlayerIndex}"; 
+		};
 		dialogController.DialogEnded += (who) => { _canMove = true; };
     }
 

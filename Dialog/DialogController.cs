@@ -24,14 +24,21 @@ public partial class DialogController : Control
 	[Signal]
 	public delegate void DialogEndedEventHandler(string who);
 
+	private UiController _uiController;
+
     public override void _Ready()
 	{
 		_text = GetNode<RichTextLabel>("Text/RichTextLabel");
 		Visible = false;
-        GetNode<PlayerController>("/root/Game2D/HBoxContainer/LeftViewportContainer/LeftSubViewport/Level2D/Player1").ShowDialog += ShowInitDialog;
+        _uiController = GetParent().GetParent<UiController>();
+		var playerIndex = _uiController.IsPrimary ? 1 : 2;
 
+		_downOptionAction = $"p{playerIndex}_down";
+		_upOptionAction = $"p{playerIndex}_up";
+		_selectOptionAction = $"p{playerIndex}_select";
+
+        GetNode<PlayerController>($"/root/Game2D/HBoxContainer/LeftViewportContainer/LeftSubViewport/Level2D/Player{playerIndex}").ShowDialog += ShowInitDialog;
 		_optionDialogs = GetNode("Options").GetChildren().OfType<TextureRect>().ToList();
-			
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -96,7 +103,7 @@ public partial class DialogController : Control
         }
 
         var nextDialog = DialogManager.Instance.GetNextDialog(dialogOptionSelected);
-		ShowDialog(nextDialog, "player1");
+		ShowDialog(nextDialog, $"player{(_uiController.IsPrimary ? 1 : 2)}");
 	}
 
 	private void ChangeOptionSelected()

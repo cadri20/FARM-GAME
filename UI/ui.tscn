@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bb5vl0j6ob2jx"]
 
 [ext_resource type="Texture2D" uid="uid://ehgfvpuentfj" path="res://UI/Sprites/UIDayData.png" id="1_2fwl4"]
+[ext_resource type="Script" uid="uid://bobcnwntf1y2o" path="res://UI/Ui.cs" id="1_h81ot"]
 [ext_resource type="PackedScene" uid="uid://csr6un8melfgh" path="res://Dialog/dialog.tscn" id="2_4fiuh"]
 [ext_resource type="Texture2D" uid="uid://csr6axg07fa80" path="res://UI/Sprites/UIEnergyEmpty.png" id="2_hat8c"]
 [ext_resource type="Texture2D" uid="uid://brjijh3rjrv47" path="res://UI/Sprites/UIEnergyFull.png" id="3_3sbvi"]
@@ -11,6 +12,7 @@
 [ext_resource type="Script" uid="uid://c3q7tn15udx0m" path="res://UI/Inventory.cs" id="7_cbfhl"]
 
 [node name="UI" type="CanvasLayer" unique_id=139274513]
+script = ExtResource("1_h81ot")
 
 [node name="TopRight" type="Control" parent="." unique_id=1943517137]
 layout_mode = 3

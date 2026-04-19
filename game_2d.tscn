@@ -52,22 +52,23 @@ layout_mode = 2
 size_flags_vertical = 3
 color = Color(0, 0, 0, 1)
 
-[node name="RightSubViewportContainer" type="SubViewportContainer" parent="HBoxContainer" unique_id=1197000789]
+[node name="RightViewportContainer" type="SubViewportContainer" parent="HBoxContainer" unique_id=1197000789]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch = true
 
-[node name="RightSubViewport" type="SubViewport" parent="HBoxContainer/RightSubViewportContainer" unique_id=1647610113]
+[node name="RightSubViewport" type="SubViewport" parent="HBoxContainer/RightViewportContainer" unique_id=1647610113]
 unique_name_in_owner = true
 handle_input_locally = false
 size = Vector2i(634, 720)
 render_target_update_mode = 4
 
-[node name="RightCamera2D" type="Camera2D" parent="HBoxContainer/RightSubViewportContainer/RightSubViewport" unique_id=779289483]
+[node name="RightCamera2D" type="Camera2D" parent="HBoxContainer/RightViewportContainer/RightSubViewport" unique_id=779289483]
 unique_name_in_owner = true
 
-[node name="RightUI" parent="HBoxContainer/RightSubViewportContainer/RightSubViewport" unique_id=2100000002 instance=ExtResource("3_ui")]
+[node name="RightUI" parent="HBoxContainer/RightViewportContainer/RightSubViewport" unique_id=2100000002 instance=ExtResource("3_ui")]
 unique_name_in_owner = true
 script = ExtResource("4_uiscript")
 SpeedMultiplier = 3000.0
+IsPrimary = false
