@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public partial class DialogManager : Node
 {
-    public string Language { get; set; } = "en";
+    public string Language { get; set; } = "es";
 
 	public static DialogManager Instance { get; private set; }
 

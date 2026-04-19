@@ -1,0 +1,101 @@
+[
+  {
+    "id": "greeting",
+    "text": "Hola, no te he visto antes por aquí. ¿Eres nuevo en la ciudad?",
+    "options": [
+      {
+        "text": "Sí, acabo de llegar.",
+        "nextId": "welcome"
+      },
+      {
+        "text": "No, llevo aquí un tiempo.",
+        "nextId": "small_talk"
+      },
+      {
+        "text": "Prefiero no decirlo. Adiós!",
+        "nextId": null,
+        "isEnd": true
+      }
+]
+
+  },
+
+  {
+    "id": "welcome",
+    "text": "¡Bienvenido a la ciudad! ¿Qué te ha traído por aquí?",
+    "options": [
+      {
+        "text": "He conseguido un nuevo trabajo.",
+        "nextId": "job"
+      },
+      {
+        "text": "Me mudé por la universidad.",
+        "nextId": "university"
+      }
+    ]
+  },
+  {
+    "id": "small_talk",
+    "text": "¡Qué bueno verte de nuevo! ¿Cómo has estado?",
+    "options": [
+      {
+        "text": "He estado bien, gracias por preguntar.",
+        "nextId": null,
+        "isEnd": true
+      },
+      {
+        "text": "No tan bien, he tenido algunos problemas últimamente.",
+        "nextId": "support"
+      }
+    ]
+  },
+  {
+    "id": "job",
+    "text": "¡Eso suena genial! ¿En qué industria estás trabajando?",
+    "options": [
+      {
+        "text": "Estoy en tecnología.",
+        "nextId": null,
+        "isEnd": true
+      },
+      {
+        "text": "Estoy en finanzas.",
+        "nextId": null,
+        "isEnd": true
+      }
+    ]
+  },
+  {
+    "id": "university",
+    "text": "¡Eso es emocionante! ¿Qué estás estudiando?",
+    "options": [
+      {
+        "text": "Estoy estudiando informática.",
+        "nextId": null,
+        "isEnd": true
+      },
+      {
+        "text": "Estoy estudiando negocios.",
+        "nextId": null,
+        "isEnd": true
+      }
+    ]
+  },
+  {
+    "id": "support",
+    "text": "Lo siento mucho. Si necesitas alguien con quien hablar, estoy aquí para escucharte.",
+    "options": [
+      {
+        "text": "Gracias, lo aprecio.",
+        "nextId": null,
+        "isEnd": true
+      },
+      {
+        "text": "No quiero hablar de ello ahora. Adiós.",
+        "nextId": null,
+        "isEnd": true
+      }
+    ]
+  }
+
+]

@@ -6,5 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Dialog\dialogs-en.json" />
+    <Content Include="Dialog\dialogs-es.json" />
   </ItemGroup>
 </Project>
