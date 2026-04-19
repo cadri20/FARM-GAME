@@ -51,6 +51,7 @@ offset_left = 86.0
 offset_top = 109.0
 offset_right = 319.0
 offset_bottom = 149.0
+mouse_filter = 0
 texture = ExtResource("3_m0wim")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Options/Option2" unique_id=129698205]
@@ -65,6 +66,7 @@ offset_left = 85.0
 offset_top = 151.0
 offset_right = 318.0
 offset_bottom = 191.0
+mouse_filter = 0
 texture = ExtResource("3_m0wim")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Options/Option3" unique_id=1125318496]

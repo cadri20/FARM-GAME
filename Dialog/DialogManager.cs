@@ -58,7 +58,8 @@ public partial class DialogManager : Node
 						var optDict = (Godot.Collections.Dictionary)opt;
 						var optText = (string)optDict["text"];
 						var nextId = (string)optDict["nextId"];
-						optionsList.Add(new DialogOption(optText, nextId));
+						var isEnd = optDict.ContainsKey("isEnd") ? (bool)optDict["isEnd"] : false;
+                        optionsList.Add(new DialogOption(optText, nextId, isEnd));
 					}
 				}
 

@@ -1,44 +1,49 @@
 [
   {
-    "id": "greeting",
-    "text": "Hello, how can I assist you today?",
-    "options": [
-      {
-        "text": "I need help with my account.",
-        "nextId": "account_help"
-      },
-      {
-        "text": "I have a question about your services.",
-        "nextId": "services_help"
-      }
-    ]
+	"id": "greeting",
+	"text": "Hello, how can I assist you today?",
+	"options": [
+	  {
+		"text": "I need help with my account.",
+		"nextId": "account_help"
+	  },
+	  {
+		"text": "I have a question about your services.",
+		"nextId": "services_help"
+	  },
+	  {
+		"text": "Nothing. Goodbye.",
+		"nextId": null,
+		"isEnd": true
+	  }
+	]
   },
   {
-    "id":  "account_help",
-    "text": "Sure, I can help you with your account. What seems to be the issue?",
-    "options": [
-      {
-        "text": "I forgot my password.",
-        "nextId": "password_reset"
-      },
-      {
-        "text": "I want to update my email address.",
-        "nextId": "update_email"
-      }
-    ]
+	"id":  "account_help",
+	"text": "Sure, I can help you with your account. What seems to be the issue?",
+	"options": [
+	  {
+		"text": "I forgot my password.",
+		"nextId": "password_reset"
+	  },
+	  {
+		"text": "I want to update my email address.",
+		"nextId": "update_email"
+	  }
+	]
   },
   {
-    "id": "services_help",
-    "text": "I'd be happy to answer any questions you have about our services. What would you like to know?",
-    "options": [
-      {
-        "text": "What services do you offer?",
-        "nextId": "service_list"
-      },
-      {
-        "text": "How can I sign up for a service?",
-        "nextId": "sign_up"
-      }
-    ]
+	"id": "services_help",
+	"text": "I'd be happy to answer any questions you have about our services. What would you like to know?",
+	"options": [
+	  {
+		"text": "What services do you offer?",
+		"nextId": "service_list"
+	  },
+	  {
+		"text": "How can I sign up for a service?",
+		"nextId": "sign_up"
+	  }
+	]
   }
 ]

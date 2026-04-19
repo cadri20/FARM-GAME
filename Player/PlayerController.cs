@@ -60,6 +60,7 @@ public partial class PlayerController : CharacterBody2D
 
 		var dialogController = GetNode<DialogController>("/root/Game2D/HBoxContainer/LeftViewportContainer/LeftSubViewport/LeftUI/BottomCenter/Dialog");
 		dialogController.DialogStarted += (who, text) => {_canMove = who != $"player{PlayerIndex}"; };
+		dialogController.DialogEnded += (who) => { _canMove = true; };
     }
 
 	public override void _PhysicsProcess(double delta)

@@ -16,7 +16,10 @@ public partial class Npc : CharacterBody2D
 		_animationTree = GetNode<AnimationTree>("AnimationTree");
 		_animationTree.Active = true;
 		_lastGlobalPosition = GlobalPosition;
-	}
+
+        var dialogController = GetNode<DialogController>("/root/Game2D/HBoxContainer/LeftViewportContainer/LeftSubViewport/LeftUI/BottomCenter/Dialog");
+        dialogController.DialogEnded += (who) => CanMove = true;
+    }
 
 	public override void _PhysicsProcess(double delta)
 	{
