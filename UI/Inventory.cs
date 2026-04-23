@@ -60,6 +60,9 @@ public partial class Inventory : TextureRect
 		UpdateInventoryUI();
     }
 
+    /// <summary>Returns a copy of all inventory slots (nulls included for empty positions).</summary>
+    public IEnumerable<InventorySlot> GetAllSlots() => _inventorySlots.ToArray();
+
     private void UpdateInventoryUI()
 	{
 		int index = 1;

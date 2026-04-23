@@ -229,10 +229,26 @@ public partial class PlayerController : CharacterBody2D
 			var pot = ValidateIfPot();
 			if(pot != null)
 			{
-				pot.Cook();
+				bool opened = pot.OpenCookingUI(Inventory, PlayerIndex);
+				if (opened)
+				{
+					_canMove = false;
+					_canAction = false;
+					pot.CookingUIClosed += OnCookingUIClosed;
+				}
 			}
         }
     }
+
+	private void OnCookingUIClosed()
+	{
+		_canMove = true;
+		_canAction = true;
+		// Disconnect so it doesn't accumulate on repeated uses
+		var pot = ValidateIfPot();
+		if (pot != null)
+			pot.CookingUIClosed -= OnCookingUIClosed;
+	}
 
     private DefineDirtHole ValidateIfHole()
 	{

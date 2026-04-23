@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cooking_ui_pot"]
+
+[ext_resource type="Script" path="res://Pot/CookingUI.cs" id="1_cookui"]
+
+[node name="CookingUI" type="Node2D"]
+script = ExtResource("1_cookui")
