@@ -5,6 +5,9 @@ public partial class Npc : CharacterBody2D
     [Export]
 	public float Speed = 300.0f;
 
+	[Export]
+	public string DialogId = "greeting";
+
 	private AnimationTree _animationTree;
 	private Vector2 _lastGlobalPosition;
 	private Vector2 _lastDirection = Vector2.Down;

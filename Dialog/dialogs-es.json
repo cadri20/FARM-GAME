@@ -96,6 +96,135 @@
         "isEnd": true
       }
     ]
+  },
+  {
+    "id": "gossip_npc1",
+    "text": "¡Psst! ¿Ya te enteraste lo que le pasó a Doña Carmen? La vieron comprando hierbas raras en el mercado a medianoche...",
+    "options": [
+      {
+        "text": "¡No me digas! ¿Qué tipo de hierbas?",
+        "nextId": "gossip_npc1_herbs"
+      },
+      {
+        "text": "Quizás solo era para cocinar.",
+        "nextId": "gossip_npc1_deny"
+      },
+      {
+        "text": "No me interesa el chisme. Adiós.",
+        "nextId": null,
+        "isEnd": true
+      }
+    ]
+  },
+  {
+    "id": "gossip_npc1_herbs",
+    "text": "¡Dicen que eran hierbas para hacer pociones! Su vecino vio luces extrañas saliendo de su ventana toda la noche. ¡Yo no dormiría cerca de esa casa!",
+    "options": [
+      {
+        "text": "¡Qué escalofriante! ¿Alguien habló con ella?",
+        "nextId": "gossip_npc1_confronted"
+      },
+      {
+        "text": "Seguramente exageran las cosas.",
+        "nextId": null,
+        "isEnd": true
+      }
+    ]
+  },
+  {
+    "id": "gossip_npc1_deny",
+    "text": "¿A medianoche? ¡Nadie compra hierbas para cocinar a medianoche! Además, el vendedor dijo que pagó con monedas de oro antiguas. ¡Muy sospechoso!",
+    "options": [
+      {
+        "text": "Tienes razón, eso es muy raro.",
+        "nextId": "gossip_npc1_confronted"
+      },
+      {
+        "text": "Me tengo que ir. Hasta luego.",
+        "nextId": null,
+        "isEnd": true
+      }
+    ]
+  },
+  {
+    "id": "gossip_npc1_confronted",
+    "text": "Pues alguien le preguntó y ella dijo que era para su jardín... ¡pero todos sabemos que no tiene jardín! Algo muy raro está pasando con esa mujer. ¡Cuídate!",
+    "options": [
+      {
+        "text": "Gracias por el aviso. Estaré atento.",
+        "nextId": null,
+        "isEnd": true
+      },
+      {
+        "text": "Creo que la gente exagera demasiado.",
+        "nextId": null,
+        "isEnd": true
+      }
+    ]
+  },
+  {
+    "id": "gossip_npc2",
+    "text": "Oye, entre tú y yo... ¿sabes que el alcalde tiene un jardín secreto detrás de su casa? ¡Nadie puede entrar y tiene guardias todo el día!",
+    "options": [
+      {
+        "text": "¿Un jardín secreto? ¿Para qué?",
+        "nextId": "gossip_npc2_garden"
+      },
+      {
+        "text": "Quizás es solo su jardín privado.",
+        "nextId": "gossip_npc2_private"
+      },
+      {
+        "text": "No me gustan los rumores. Adiós.",
+        "nextId": null,
+        "isEnd": true
+      }
+    ]
+  },
+  {
+    "id": "gossip_npc2_garden",
+    "text": "¡Eso es lo que nadie sabe! Pero mi primo trabaja en el ayuntamiento y dice que el alcalde recibe cajas enormes por las noches. ¡Las descargan sin encender las luces!",
+    "options": [
+      {
+        "text": "¿Tu primo sabe qué hay en las cajas?",
+        "nextId": "gossip_npc2_boxes"
+      },
+      {
+        "text": "Debe ser algo para la ciudad.",
+        "nextId": null,
+        "isEnd": true
+      }
+    ]
+  },
+  {
+    "id": "gossip_npc2_private",
+    "text": "¿Privado? ¡Tiene una valla de tres metros y cámaras por todos lados! El año pasado intentaron construir una escuela ahí pero el alcalde lo impidió. ¿Por qué tanto secreto?",
+    "options": [
+      {
+        "text": "Eso sí que suena sospechoso.",
+        "nextId": "gossip_npc2_boxes"
+      },
+      {
+        "text": "No sé, puede haber muchas razones.",
+        "nextId": null,
+        "isEnd": true
+      }
+    ]
+  },
+  {
+    "id": "gossip_npc2_boxes",
+    "text": "Mi primo intentó mirar dentro de una caja y lo despidieron al día siguiente. ¡Sin explicación! Desde entonces nadie pregunta nada. Algo grande se está ocultando ahí, te lo juro.",
+    "options": [
+      {
+        "text": "Deberíamos informar a alguien.",
+        "nextId": null,
+        "isEnd": true
+      },
+      {
+        "text": "Mejor no meterse en problemas. Adiós.",
+        "nextId": null,
+        "isEnd": true
+      }
+    ]
   }
-
 ]

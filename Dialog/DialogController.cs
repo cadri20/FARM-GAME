@@ -62,9 +62,9 @@ public partial class DialogController : Control
         }
     }
 
-	private void ShowInitDialog(string who)
+	private void ShowInitDialog(string who, string dialogId)
 	{
-		var dialog = DialogManager.Instance.GetDialogById("greeting");
+		var dialog = DialogManager.Instance.GetDialogById(dialogId);
         ShowDialog(dialog, who);
 		_isActive = true;
     }

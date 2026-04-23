@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 public partial class PlayerController : CharacterBody2D
 {
     [Signal]
-    public delegate void ShowDialogEventHandler(string who);
+    public delegate void ShowDialogEventHandler(string who, string dialogId);
 
     [Export]
 	public int Speed = 400;
@@ -292,7 +292,7 @@ public partial class PlayerController : CharacterBody2D
 			if(area.GetParent() is Npc npc)
 			{
 				npc.CanMove = false;
-				EmitSignal(SignalName.ShowDialog, $"player{PlayerIndex}");
+				EmitSignal(SignalName.ShowDialog, $"player{PlayerIndex}", npc.DialogId);
             }
         }
     }

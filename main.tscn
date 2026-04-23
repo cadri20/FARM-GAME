@@ -44,3 +44,13 @@ rotates = false
 [node name="NPC" parent="Path2D/PathFollow2D" unique_id=1444973819 instance=ExtResource("5_lquwl")]
 position = Vector2(49.892517, 14.378387)
 rotation = -1.5632207
+
+[node name="NPC_Gossip1" parent="." unique_id=2100000001 instance=ExtResource("5_lquwl")]
+position = Vector2(300, 420)
+Speed = 0.0
+DialogId = "gossip_npc1"
+
+[node name="NPC_Gossip2" parent="." unique_id=2100000002 instance=ExtResource("5_lquwl")]
+position = Vector2(120, 420)
+Speed = 0.0
+DialogId = "gossip_npc2"
